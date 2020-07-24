@@ -1,9 +1,11 @@
-import express from 'express'
+const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const app = express()
+const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello')
-})
+app.get('/', (req: any, res: { send: (arg0: string) => void }) => {
+  res.send('Hello');
+});
 
-app.listen(5000, () => console.log('server is running'))
+app.listen(process.env.PORT, () => console.log('server is running'));
