@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: Oscar API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://TODO/v1
+tags:
+- name: moods
+  description: Capture an individuals mood
+paths:
+  /moods:
+    put:
+      tags:
+      - moods
+      summary: Update a users mood for today
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mood'
+        required: true
+      responses:
+        200:
+          description: Mood updated
+          content: {}
+      security:
+      - oscar_auth:
+        - write:moods
+    post:
+      tags:
+      - moods
+      summary: Add a mood for today
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mood'
+        required: true
+      responses:
+        201:
+          description: Mood created
+          content: {}
+        405:
+          description: Mood already requested
+          content: {}
+      security:
+      - oscar_auth:
+        - write:moods
+    get:
+      tags:
+      - moods
+      summary: List all previously recorded moods
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mood'
+      security:
+      - oscar_auth:
+        - read:moods
+components:
+  schemas:
+    MoodRecord:
+      type: object
+      properties:
+        value:
+          type: integer
+          example: 5
+        description:
+          type: string
+          example: Meh, Ok
+    Mood:
+      type: object
+      properties:
+        physical:
+          $ref: '#/components/schemas/MoodRecord'
+        mental:
+          $ref: '#/components/schemas/MoodRecord'
+        timestamp:
+          type: string
+          format: date-time
+  securitySchemes:
+    oscar_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://TODO/oauth/dialog
+          scopes:
+            write:moods: modify moods in your account
+            read:moods: read your moods
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+
