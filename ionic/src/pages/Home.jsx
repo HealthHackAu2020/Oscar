@@ -1,16 +1,26 @@
-import React from 'react';
-import { IonImg, IonButton, IonIcon, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol } from '@ionic/react';
-import { bulb } from 'ionicons/icons';
-import './Home.css';
+import React from "react";
+import {
+  IonImg,
+  IonButton,
+  IonIcon,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonGrid,
+  IonRow,
+  IonCol,
+} from "@ionic/react";
+import { bulb } from "ionicons/icons";
+import "./Home.css";
 
 const HomeTab = () => {
   return (
     <IonPage>
-      <IonHeader>
-      </IonHeader>
+      <IonHeader></IonHeader>
       <IonContent>
-        <IonHeader collapse="condense">
-        </IonHeader>
+        <IonHeader collapse="condense"></IonHeader>
         <div>
           <div className="home-page-date">18th January 2020</div>
           <div className="home-page-hi">Good Morning</div>
@@ -20,7 +30,6 @@ const HomeTab = () => {
           </div>
         </div>
         <IonGrid>
-
           <IonRow>
             <HomeTabBigButton title="Today's activities" image="bulb" />
             <HomeTabBigButton title="Meet-up schedule" image="clouds" />
@@ -29,9 +38,11 @@ const HomeTab = () => {
             <HomeTabBigButton title="Mood quiz" image="sliders" />
             <HomeTabBigButton title="Connect and chat" image="hand" />
           </IonRow>
-        
-        <QuoteOfTheDay text="Whoever wants to reach a distant goal must take small steps" author="Helmut Schmidt" />
 
+          <QuoteOfTheDay
+            text="Whoever wants to reach a distant goal must take small steps"
+            author="Helmut Schmidt"
+          />
         </IonGrid>
       </IonContent>
     </IonPage>
@@ -39,19 +50,22 @@ const HomeTab = () => {
 };
 
 function HomeTabBigButton(props) {
-  const { title, image } = props
+  const { title, image } = props;
   return (
     <IonCol size="6">
       <div className="home-page-big-button">
-        <IonImg style={{ height: "10em", width: "90%" }} src={`assets/${image}.png`} />
+        <IonImg
+          style={{ height: "10em", width: "90%" }}
+          src={`assets/${image}.png`}
+        />
         {title}
       </div>
     </IonCol>
-  )
+  );
 }
 
 function QuoteOfTheDay(props) {
-  const { text, author } = props
+  const { text, author } = props;
   return (
     <IonCol size="12">
       <div className="home-page-quote-of-the-day">
@@ -60,8 +74,7 @@ function QuoteOfTheDay(props) {
         <div>— {author}</div>
       </div>
     </IonCol>
-  )
-
+  );
 }
 
 export default HomeTab;

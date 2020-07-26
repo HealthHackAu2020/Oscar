@@ -14,6 +14,7 @@ import {  personOutline, calendarOutline, homeOutline } from "ionicons/icons";
 import Home from "./pages/Home";
 import AllActivitiesTab from "./pages/AllActivitiesTab";
 import Tab3 from "./pages/Tab3";
+import MoodQuiz from './components/MoodQuiz'
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/homeTab" component={Home} exact={true} />
           <Route path="/allActivitiesTab" component={AllActivitiesTab} exact={true} />
           <Route path="/tab3" component={Tab3} />
+          <Route path="/MoodQuiz" component={MoodQuiz} />
           <Route path="/" render={() => <Redirect to="/homeTab" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">

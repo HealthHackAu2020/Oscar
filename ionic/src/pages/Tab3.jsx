@@ -6,8 +6,6 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import * as Ion from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
 import "./Tab3.css";
 import WelcomePage from "../components/WelcomePage";
 
