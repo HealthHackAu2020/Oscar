@@ -3,7 +3,7 @@ import { IonGrid, IonImg, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, 
 import ExploreContainer from '../components/ExploreContainer';
 import './AllActivitiesTab.css';
 
-const AllActivitiesTab = () => {
+const AllActivitiesTab = ({history}) => {
   return (
     <IonPage>
       <IonHeader>
@@ -23,9 +23,11 @@ const AllActivitiesTab = () => {
           <h3>Suggested for you</h3>
 
           <ActivityListItem
+            page="TimeToTakeAWalk"
             title="Let's take a walk"
             subtitle="Time to appreciate the environment"
             image="park"
+            history={history}
           />
           <ActivityListItem
             title="Let's think together"
@@ -53,17 +55,22 @@ const AllActivitiesTab = () => {
 };
 
 function ActivityListItem(props) {
-  const { title, subtitle, image } = props
+  const { page, history, title, subtitle, image } = props
+
+  function onClick(e) {
+    e.preventDefault();
+    history.push(`/activity/${page}`);
+  }
   return (
     <div className="activity-list-item">
       <IonGrid>
-        <IonRow>
+        <IonRow onClick={onClick}>
           <IonCol size="4">
             <IonImg style={{ height: "5em", width: "90%" }} src={`assets/${image}.png`} />
           </IonCol>
           <IonCol size="8">
-            <div class="title">{title}</div>
-            <div class="subtitle">{subtitle}</div>
+            <div className="title">{title}</div>
+            <div className="subtitle">{subtitle}</div>
           </IonCol>
         </IonRow>
       </IonGrid>

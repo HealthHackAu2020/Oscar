@@ -1,0 +1,19 @@
+
+.activity-content {
+    padding: 0.5em;
+    margin: 1em;
+    font-size: larger;
+}
+
+.activity-title {
+    font-weight: bold;
+}
+
+.activity-duration {
+    
+}
+
+.activity-text {
+    margin-top: 2em;
+    text-align: justify;
+}
