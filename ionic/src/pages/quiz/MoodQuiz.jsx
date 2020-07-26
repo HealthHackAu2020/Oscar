@@ -1,39 +1,42 @@
 import React from "react";
 import { IonButton, IonPage, IonHeader, IonBackButton } from "@ionic/react";
-import COLOR from "../theme/theme";
 import "./MoodQuiz.css";
 
-const MoodQuiz = () => {
+const MoodQuiz = ({history}) => {
+  function onClick(e) {
+    e.preventDefault();
+    history.push(`/quiz/MentalQuiz`);
+  }
   return (
     <IonPage>
       <IonHeader>
         <IonBackButton />
       </IonHeader>
       <div className="container">
-        <h1>How are you physically feeling today?</h1>
-        <h3>Select a feeling that best suit you</h3>
+        <h2>How are you physically feeling today?</h2>
+        <p>Select a feeling that best suit you</p>
         <div>
-          <div lines="none">
+          <div>
             <IonButton className="mood-btn" color="danger" shape="round">
               Great
             </IonButton>
           </div>
-          <div lines="none">
+          <div>
             <IonButton className="mood-btn" color="warning" shape="round">
               Good
             </IonButton>
           </div>
-          <div lines="none">
+          <div>
             <IonButton className="mood-btn" color="success" shape="round">
               Meh
             </IonButton>
           </div>
-          <div lines="none">
+          <div>
             <IonButton className="mood-btn" color="tertiary" shape="round">
               Poor
             </IonButton>
           </div>
-          <div lines="none">
+          <div>
             <IonButton className="mood-btn" color="medium" shape="round">
               Rough
             </IonButton>
@@ -41,13 +44,13 @@ const MoodQuiz = () => {
           <IonButton
             className="next-btn"
             color="light"
-            href="/MentalQuiz"
+            onClick={onClick}
             shape="round"
           >
             Next
           </IonButton>
         </div>
-        <a>Skip</a>
+        <a href=''>Skip</a>
       </div>
     </IonPage>
   );

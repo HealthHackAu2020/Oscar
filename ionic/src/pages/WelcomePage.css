@@ -1,0 +1,21 @@
+.logo {
+  width: 224px;
+}
+
+.oscar {
+  width: 334px;
+}
+
+.logo-text {
+  color: white;
+}
+
+.container{
+    text-align: -webkit-center;
+    margin-top: 125px
+}
+
+.start-btn{
+    --padding-bottom:5px;
+    --padding-top:5px
+}

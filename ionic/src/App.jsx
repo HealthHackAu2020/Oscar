@@ -10,14 +10,13 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import {  personOutline, calendarOutline, homeOutline } from "ionicons/icons";
+import { personOutline, calendarOutline, homeOutline } from "ionicons/icons";
 import Home from "./pages/Home";
 import AllActivitiesTab from "./pages/AllActivitiesTab";
-import TimeToTakeAWalk from "./pages/activities/TimeToTakeAWalk"
-import Tab3 from "./pages/Tab3";
-import MoodQuiz from './quiz/MoodQuiz'
-import Mental from './quiz/MentalQuiz'
-
+import TimeToTakeAWalk from "./pages/activities/TimeToTakeAWalk";
+import WelcomePage from "./pages/WelcomePage";
+import MoodQuiz from "./pages/quiz/MoodQuiz";
+import MentalQuiz from "./pages/quiz/MentalQuiz";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -41,44 +40,52 @@ import "./theme/variables.css";
 const App2 = () => (
   <IonApp>
     <IonReactRouter>
-        <IonRouterOutlet>
-          <Route path="/activity/TimeToTakeAWalk" component={TimeToTakeAWalk} />
+      <IonRouterOutlet>
+        <Route path="/activity/TimeToTakeAWalk" component={TimeToTakeAWalk} />
 
-          <Route path="/MoodQuiz" component={MoodQuiz} />
+        <Route path="/quiz/MoodQuiz" component={MoodQuiz} />
+        <Route path="/quiz/MentalQuiz" component={MentalQuiz} />
 
-          <Route path="/tabs" component={Tabs}  />
+        <Route path="/tabs" component={Tabs} />
 
-          <Route path="/" render={() => <Redirect to="/tabs/home" />} exact={true} />
-        </IonRouterOutlet>
+        <Route
+          path="/"
+          render={() => <Redirect to="/tabs/home" />}
+          exact={true}
+        />
+      </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );
 
 function Tabs() {
   return (
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/tabs/home" component={Home} exact={true} />
-          <Route path="/tabs/activities" component={AllActivitiesTab} exact={true} />
-          <Route path="/tabs/tab3" component={Tab3} />
-
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/tabs/home">
-            <ion-icon icon={homeOutline}></ion-icon>
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="activities" href="/tabs/activities">
-            <IonIcon icon={calendarOutline} />
-            <IonLabel>Activities</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tabs/tab3">
-            <IonIcon icon={personOutline} />
-            <IonLabel>Settings</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-  )
+    <IonTabs>
+      <IonRouterOutlet>
+        <Route path="/tabs/home" component={Home} exact={true} />
+        <Route
+          path="/tabs/activities"
+          component={AllActivitiesTab}
+          exact={true}
+        />
+        <Route path="/tabs/WelcomePage" component={WelcomePage} />
+      </IonRouterOutlet>
+      <IonTabBar slot="bottom">
+        <IonTabButton tab="home" href="/tabs/home">
+          <ion-icon icon={homeOutline}></ion-icon>
+          <IonLabel>Home</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="activities" href="/tabs/activities">
+          <IonIcon icon={calendarOutline} />
+          <IonLabel>Activities</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="WelcomePage" href="/tabs/WelcomePage">
+          <IonIcon icon={personOutline} />
+          <IonLabel>Settings</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+    </IonTabs>
+  );
 }
 
 export default App2;
