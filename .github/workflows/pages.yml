@@ -29,9 +29,10 @@ jobs:
           npm i
           npm run build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.5.7
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: build # The folder the action should deploy.
+      # Temporarily commented out as GITHUB_TOKEN secret hasn't been aded yet in the Github configuration
+      #- name: Deploy 🚀
+      #  uses: JamesIves/github-pages-deploy-action@3.5.7
+      #  with:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    BRANCH: gh-pages # The branch the action should deploy to.
+      #    FOLDER: build # The folder the action should deploy.
