@@ -64,7 +64,7 @@ function ActivityListItem(props) {
   return (
     <div className="activity-list-item">
       <IonGrid>
-        <IonRow onClick={onClick}>
+        <IonRow onClick={(page && history) ? onClick : undefined}>
           <IonCol size="4">
             <IonImg style={{ height: "5em", width: "90%" }} src={`assets/${image}.png`} />
           </IonCol>

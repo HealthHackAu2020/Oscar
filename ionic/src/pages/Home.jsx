@@ -12,10 +12,9 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { bulb } from "ionicons/icons";
 import "./Home.css";
 
-const HomeTab = () => {
+const HomeTab = ({ history }) => {
   return (
     <IonPage>
       <IonHeader></IonHeader>
@@ -31,7 +30,7 @@ const HomeTab = () => {
         </div>
         <IonGrid>
           <IonRow>
-            <HomeTabBigButton title="Today's activities" image="bulb" />
+            <HomeTabBigButton title="Today's activities" image="bulb" history={history} page="/tabs/activities" />
             <HomeTabBigButton title="Meet-up schedule" image="clouds" />
           </IonRow>
           <IonRow>
@@ -50,9 +49,13 @@ const HomeTab = () => {
 };
 
 function HomeTabBigButton(props) {
-  const { title, image } = props;
+  const { page, history, title, image } = props;
+  function onClick(e) {
+    e.preventDefault();
+    history.push(page)
+  }
   return (
-    <IonCol size="6">
+    <IonCol size="6" onClick={page ? onClick : undefined}>
       <div className="home-page-big-button">
         <IonImg
           style={{ height: "10em", width: "90%" }}
