@@ -68,7 +68,7 @@ function Tabs() {
           </IonTabButton>
           <IonTabButton tab="activities" href="/tabs/activities">
             <IonIcon icon={calendarOutline} />
-            <IonLabel>All Activities</IonLabel>
+            <IonLabel>Activities</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tabs/tab3">
             <IonIcon icon={personOutline} />
