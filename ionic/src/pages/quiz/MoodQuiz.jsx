@@ -50,7 +50,7 @@ const MoodQuiz = ({history}) => {
             Next
           </IonButton>
         </div>
-        <a href=''>Skip</a>
+        <a href='/'>Skip</a>
       </div>
     </IonPage>
   );
