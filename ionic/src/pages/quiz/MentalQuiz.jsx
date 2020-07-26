@@ -14,7 +14,6 @@ import {
   IonBackButton,
 } from "@ionic/react";
 import { sunny } from "ionicons/icons";
-import { RangeValue } from "@ionic/core";
 
 const MentalQuiz = () => {
   const [value, setValue] = useState(0);
