@@ -42,7 +42,7 @@ const App = () => (
           <Route path="/homeTab" component={Home} exact={true} />
           <Route path="/allActivitiesTab" component={AllActivitiesTab} exact={true} />
           <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/homeTab" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="homeTab" href="/homeTab">
