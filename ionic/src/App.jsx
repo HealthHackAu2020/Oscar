@@ -15,7 +15,9 @@ import Home from "./pages/Home";
 import AllActivitiesTab from "./pages/AllActivitiesTab";
 import TimeToTakeAWalk from "./pages/activities/TimeToTakeAWalk"
 import Tab3 from "./pages/Tab3";
-import MoodQuiz from './components/MoodQuiz'
+import MoodQuiz from './quiz/MoodQuiz'
+import Mental from './quiz/MentalQuiz'
+
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";

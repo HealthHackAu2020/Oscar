@@ -7,15 +7,13 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import "./Tab3.css";
-import WelcomePage from "../components/WelcomePage";
+import WelcomePage from "../quiz/WelcomePage";
 
 const Tab3 = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
-        </IonToolbar>
+        
       </IonHeader>
       <IonContent>
         <IonHeader collapse="condense">
