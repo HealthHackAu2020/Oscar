@@ -11,6 +11,7 @@ import {
   IonLabel,
   IonIcon,
   IonItemDivider,
+  IonBackButton,
 } from "@ionic/react";
 import { sunny } from "ionicons/icons";
 import { RangeValue } from "@ionic/core";
