@@ -1,26 +1,67 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonImg, IonButton, IonIcon, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { bulb } from 'ionicons/icons';
 import './Home.css';
 
-const Tab1 = () => {
+const HomeTab = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
-        </IonToolbar>
       </IonHeader>
       <IonContent>
         <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
+        <div>
+          <div className="home-page-date">18th January 2020</div>
+          <div className="home-page-hi">Good Morning</div>
+          <div className="home-page-hi">Lauren</div>
+          <div className="home-page-welcome-msg">
+            Glad to hear you're feeling a bit better today.
+          </div>
+        </div>
+        <IonGrid>
+
+          <IonRow>
+            <HomeTabBigButton title="Today's activities" image="bulb" />
+            <HomeTabBigButton title="Meet-up schedule" image="clouds" />
+          </IonRow>
+          <IonRow>
+            <HomeTabBigButton title="Mood quiz" image="sliders" />
+            <HomeTabBigButton title="Connect and chat" image="hand" />
+          </IonRow>
+        
+        <QuoteOfTheDay text="Whoever wants to reach a distant goal must take small steps" author="Helmut Schmidt" />
+
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab1;
+function HomeTabBigButton(props) {
+  const { title, image } = props
+  return (
+    <IonCol size="6">
+      <div className="home-page-big-button">
+        <IonImg style={{ height: "10em", width: "90%" }} src={`assets/${image}.png`} />
+        {title}
+      </div>
+    </IonCol>
+  )
+}
+
+function QuoteOfTheDay(props) {
+  const { text, author } = props
+  return (
+    <IonCol size="12">
+      <div className="home-page-quote-of-the-day">
+        <div>Quote of the day</div>
+        <div>{text}</div>
+        <div>— {author}</div>
+      </div>
+    </IonCol>
+  )
+
+}
+
+export default HomeTab;

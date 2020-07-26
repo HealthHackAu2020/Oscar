@@ -12,7 +12,7 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import {  personOutline, calendarOutline, homeOutline } from "ionicons/icons";
 import Home from "./pages/Home";
-import Tab2 from "./pages/Tab2";
+import AllActivitiesTab from "./pages/AllActivitiesTab";
 import Tab3 from "./pages/Tab3";
 
 /* Core CSS required for Ionic components to work properly */
@@ -39,23 +39,23 @@ const App = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1" component={Home} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
+          <Route path="/homeTab" component={Home} exact={true} />
+          <Route path="/allActivitiesTab" component={AllActivitiesTab} exact={true} />
           <Route path="/tab3" component={Tab3} />
           <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="homeTab" href="/homeTab">
             <ion-icon icon={homeOutline}></ion-icon>
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="allActivitiesTab" href="/allActivitiesTab">
             <IonIcon icon={calendarOutline} />
             <IonLabel>All Activities</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
             <IonIcon icon={personOutline} />
-            <IonLabel>Setting</IonLabel>
+            <IonLabel>Settings</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

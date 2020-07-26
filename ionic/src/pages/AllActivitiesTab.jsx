@@ -1,9 +1,9 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab2.css';
+import './AllActivitiesTab.css';
 
-const Tab2 = () => {
+const AllActivitiesTab = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -23,4 +23,4 @@ const Tab2 = () => {
   );
 };
 
-export default Tab2;
+export default AllActivitiesTab;
