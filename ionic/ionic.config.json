@@ -1,0 +1,7 @@
+{
+  "name": "oscar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
