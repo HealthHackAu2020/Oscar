@@ -1,7 +1,15 @@
-import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Tab3.css';
+import React from "react";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+import * as Ion from "@ionic/react";
+import ExploreContainer from "../components/ExploreContainer";
+import "./Tab3.css";
+import WelcomePage from "../components/WelcomePage";
 
 const Tab3 = () => {
   return (
@@ -17,7 +25,7 @@ const Tab3 = () => {
             <IonTitle size="large">Tab 3</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
+        <WelcomePage />
       </IonContent>
     </IonPage>
   );
