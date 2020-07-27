@@ -97,9 +97,9 @@ const MoodQuiz = ({ history }) => {
             <ion-icon icon={arrowForwardSharp}></ion-icon>
           </IonButton>
         </div>
-        <a className="skip-btn" href="">
+        <button className="skip-btn" onClick={undefined}>
           Skip
-        </a>
+        </button>
       </div>
     </IonPage>
   );
