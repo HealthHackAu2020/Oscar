@@ -8,6 +8,8 @@ function ActivityBase(props) {
 
   const { title, duration, children, imageBig } = props
 
+  const isFavourite = false
+
   return (
     <IonPage>
       <IonHeader>
@@ -18,7 +20,7 @@ function ActivityBase(props) {
             <div style={{ float: 'right' }}>
               <IonIcon className="activity-fav-icon"
                   size='x-large'
-                  icon={heartOutline} />
+                  icon={isFavourite ? heart : heartOutline} />
             </div>
           <div>
             <h2 className="activity-title">{title}</h2>

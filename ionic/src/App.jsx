@@ -13,7 +13,6 @@ import { IonReactRouter } from "@ionic/react-router";
 import { personOutline, calendarOutline, homeOutline } from "ionicons/icons";
 import Home from "./pages/Home";
 import AllActivitiesTab from "./pages/AllActivitiesTab";
-import TimeToTakeAWalk from "./pages/activities/TimeToTakeAWalk";
 import WelcomePage from "./pages/WelcomePage";
 import MoodQuiz from "./pages/quiz/MoodQuiz";
 import MentalQuiz from "./pages/quiz/MentalQuiz";
