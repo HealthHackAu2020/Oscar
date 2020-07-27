@@ -24,6 +24,10 @@ const MentalQuiz = ({ history }, props) => {
     history.push(page);
   }
 
+  function handler(condition, value) {
+    condition(value);
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -36,63 +40,63 @@ const MentalQuiz = ({ history }, props) => {
       </IonContent>
       <IonContent>
         <IonList>
-          <IonLabel>Stressed</IonLabel>
-          <IonItem lines="none">
-            <IonRange
-              className="range-bar"
-              min={0}
-              max={10}
-              pin={true}
-              value={stressed}
-              onIonChange={(e) => setStressed(e.detail.value)}
-            >
-              <IonLabel slot="start">0</IonLabel>
-              <IonLabel slot="end">10</IonLabel>
-            </IonRange>
-          </IonItem>
-          <IonLabel>optimistic</IonLabel>
-          <IonItem lines="none">
-            <IonRange
-              className="range-bar"
-              min={0}
-              max={10}
-              pin={true}
-              value={optimistic}
-              onIonChange={(e) => setOptimistic(e.detail.value)}
-            >
-              <IonLabel slot="start">0</IonLabel>
-              <IonLabel slot="end">10</IonLabel>
-            </IonRange>
-          </IonItem>
-          <IonLabel>Worried</IonLabel>
-          <IonItem lines="none">
-            <IonRange
-              className="range-bar"
-              min={0}
-              max={10}
-              pin={true}
-              value={worried}
-              onIonChange={(e) => setWorried(e.detail.value)}
-            >
-              <IonLabel slot="start">0</IonLabel>
-              <IonLabel slot="end">10</IonLabel>
-            </IonRange>
-          </IonItem>
+          <RangeBar
+            handler={handler}
+            value={stressed}
+            setState={setStressed}
+            parameter="Stressed"
+          ></RangeBar>
+          <RangeBar
+            handler={handler}
+            value={optimistic}
+            setState={setOptimistic}
+            parameter="Optimistic"
+          ></RangeBar>
+          <RangeBar
+            handler={handler}
+            value={worried}
+            setState={setWorried}
+            parameter="Worried"
+          ></RangeBar>
         </IonList>
-        <IonButton
-          className="next-btn"
-          color="light"
-          shape="round"
-          onClick={(e) => {
-            onClick(e, "/quiz/MentalQuiz");
-          }}
-        >
-          Next
-          <ion-icon icon={arrowForwardSharp}></ion-icon>
-        </IonButton>
+        <div>
+          <IonButton
+            className="next-btn"
+            color="light"
+            shape="round"
+            onClick={(e) => {
+              onClick(e, "/quiz/MentalQuiz");
+            }}
+          >
+            Next
+            <ion-icon icon={arrowForwardSharp}></ion-icon>
+          </IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );
 };
+
+function RangeBar(props) {
+  const { parameter, handler, value , setState} = props;
+  return (
+    <>
+      <IonLabel>{parameter}</IonLabel>
+      <IonItem lines="none">
+        <IonRange
+          className="range-bar"
+          min={0}
+          max={10}
+          pin={true}
+          value={value}
+          onIonChange={(e) => handler(setState, e.detail.value)}
+        >
+          <IonLabel slot="start">0</IonLabel>
+          <IonLabel slot="end">10</IonLabel>
+        </IonRange>
+      </IonItem>
+    </>
+  );
+}
 
 export default MentalQuiz;
