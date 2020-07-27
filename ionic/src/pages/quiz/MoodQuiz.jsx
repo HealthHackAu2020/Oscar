@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { IonButton, IonPage, IonHeader, IonBackButton } from "@ionic/react";
 import "./MoodQuiz.css";
+import { arrowForwardSharp } from "ionicons/icons";
 
-const MoodQuiz = ({history}) => {
-  function onClick(e) {
+const MoodQuiz = ({ history }) => {
+  const [physicalMood, setPhysicalMood] = useState();
+
+  function onClick(e, page, physicalMood) {
+    if (!physicalMood) return;
     e.preventDefault();
-    history.push(`/quiz/MentalQuiz`);
+    history.push(page, physicalMood);
   }
   return (
     <IonPage>
@@ -13,44 +17,89 @@ const MoodQuiz = ({history}) => {
         <IonBackButton />
       </IonHeader>
       <div className="container">
-        <h2>How are you physically feeling today?</h2>
-        <p>Select a feeling that best suit you</p>
+        <h2 className="quiz-title">How are you physically feeling today?</h2>
+        <p className='quiz-tet'>Select a feeling that best suit you</p>
         <div>
           <div>
-            <IonButton className="mood-btn" color="danger" shape="round">
+            <IonButton
+              className="mood-btn"
+              color="danger"
+              shape="round"
+              id="great"
+              onClick={(e) => {
+                setPhysicalMood(e.target.id);
+              }}
+            >
               Great
             </IonButton>
           </div>
           <div>
-            <IonButton className="mood-btn" color="warning" shape="round">
+            <IonButton
+              className="mood-btn"
+              color="warning"
+              shape="round"
+              id="good"
+              onClick={(e) => {
+                setPhysicalMood(e.target.id);
+              }}
+            >
               Good
             </IonButton>
           </div>
           <div>
-            <IonButton className="mood-btn" color="success" shape="round">
+            <IonButton
+              className="mood-btn"
+              color="success"
+              shape="round"
+              id="meh"
+              onClick={(e) => {
+                setPhysicalMood(e.target.id);
+              }}
+            >
               Meh
             </IonButton>
           </div>
           <div>
-            <IonButton className="mood-btn" color="tertiary" shape="round">
+            <IonButton
+              className="mood-btn"
+              color="tertiary"
+              shape="round"
+              id="poor"
+              onClick={(e) => {
+                setPhysicalMood(e.target.id);
+              }}
+            >
               Poor
             </IonButton>
           </div>
           <div>
-            <IonButton className="mood-btn" color="medium" shape="round">
+            <IonButton
+              className="mood-btn"
+              color="medium"
+              shape="round"
+              id="rough"
+              onClick={(e) => {
+                setPhysicalMood(e.target.id);
+              }}
+            >
               Rough
             </IonButton>
           </div>
           <IonButton
             className="next-btn"
             color="light"
-            onClick={onClick}
             shape="round"
+            onClick={(e) => {
+              onClick(e, "/quiz/MentalQuiz", physicalMood);
+            }}
           >
-            Next
+            Next 
+            <ion-icon icon={arrowForwardSharp}></ion-icon>
           </IonButton>
         </div>
-        <a href=''>Skip</a>
+        <a className="skip-btn" href="">
+          Skip
+        </a>
       </div>
     </IonPage>
   );

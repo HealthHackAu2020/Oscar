@@ -1,9 +1,57 @@
-.mood-btn{
-    margin: 15px;
-
+.mood-btn {
+  margin: 15px;
+  width: 150px;
+  height: 45px;
+  text-transform: capitalize;
+  --box-shadow: none;
 }
 
-.next-btn{
-    margin-top: 30px
+.next-btn {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  width: 150px;
+  height: 45px;
+  text-transform: capitalize;
+  --box-shadow: none;
+  --border-width: 1px;
+  --border-color: black;
+  --border-style: solid;
 }
 
+.container {
+  padding: 0.5em;
+  margin: 1em;
+}
+
+.skip-btn {
+  height: 19px;
+  width: 27px;
+  color: #b9b9b9;
+  font-family: Avenir;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 19px;
+  text-align: center;
+}
+
+.quiz-text {
+  height: 22px;
+  width: 253px;
+  color: #000000;
+  font-family: Avenir;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.23px;
+  line-height: 22px;
+}
+
+.quiz-title {
+  color: #000000;
+  font-family: Avenir;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 28px;
+  text-align: center;
+}
