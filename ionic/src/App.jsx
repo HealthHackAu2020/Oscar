@@ -36,12 +36,17 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import AllActivities from "./pages/activities/AllActivities";
 
 const App2 = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/activity/TimeToTakeAWalk" component={TimeToTakeAWalk} />
+        {
+          AllActivities.map(activityRenderFunc => (
+            <Route path={"/activity/" + activityRenderFunc.id} component={activityRenderFunc} />
+          ))
+        }
 
         <Route path="/quiz/MoodQuiz" component={MoodQuiz} />
         <Route path="/quiz/MentalQuiz" component={MentalQuiz} />

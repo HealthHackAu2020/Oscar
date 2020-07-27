@@ -5,12 +5,33 @@
     font-size: larger;
 }
 
+.activity-fav-icon {
+    fill: red;
+    color: grey;
+    font-size: 2.5em;
+    margin-top: 0.2em;
+}
+
 .activity-title {
     font-weight: bold;
 }
 
 .activity-duration {
     
+}
+
+.activity-complete-checkbox ion-checkbox {
+    font-size: large;
+    --size: 2em;
+}
+
+.activity-image::part(image) {
+    margin: 0.2em;
+    margin-right: 1em;
+    border-radius: 10px;
+}
+.activity-image {
+    margin-right: 1em;
 }
 
 .activity-text {
