@@ -1,5 +1,6 @@
 {
   "name": "oscar",
+  "homepage": "https://healthhackau2020.github.io/Oscar/",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
