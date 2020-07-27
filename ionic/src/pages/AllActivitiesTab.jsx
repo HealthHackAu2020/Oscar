@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonGrid, IonImg, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCol, IonRow } from '@ionic/react';
+import { IonGrid, IonImg, IonContent, IonHeader, IonPage, IonCol, IonRow } from '@ionic/react';
 import './AllActivitiesTab.css';
 
 
