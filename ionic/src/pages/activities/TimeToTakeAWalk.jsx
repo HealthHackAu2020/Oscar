@@ -2,14 +2,20 @@ import React from 'react';
 import Activity from './Activity'
 
 // don't change this string lightly - it's used to store activity favourites and history
-const id = "TimeToTakeAWalk" 
+const activityId = "TimeToTakeAWalk" 
 
-export default function TimeToTakeAWalk() {
+export default function ThisActivity(props) {
   return (
     <Activity
       title="Let's take a walk"
       duration="5 — 20 minutes"
+
+      listSubtitle="Time to appreciate the environment"
+      listImage="park.png"
+
       imageBig="park-big.png"
+
+      {...props} {...{activityId}}
     >
       <p>
         Time to be conscious of the environment every time
@@ -25,4 +31,4 @@ export default function TimeToTakeAWalk() {
     </Activity>
   )
 }
-TimeToTakeAWalk.id = id
+ThisActivity.activityId = activityId

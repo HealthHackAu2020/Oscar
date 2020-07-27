@@ -27,11 +27,11 @@ const HomeTab = ({ history }) => {
         <IonGrid>
           <IonRow>
             <HomeTabBigButton title="Today's activities" image="bulb" history={history} page="/tabs/activities" />
-            <HomeTabBigButton title="Meet-up schedule" image="clouds" />
+            <HomeTabBigButton title="Help &amp; Support" image="clouds" />
           </IonRow>
           <IonRow>
             <HomeTabBigButton title="Mood quiz" image="sliders" />
-            <HomeTabBigButton title="Connect and chat" image="hand" />
+            <HomeTabBigButton title="Connect" image="hand" />
           </IonRow>
 
           <QuoteOfTheDay

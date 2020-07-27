@@ -1,9 +1,24 @@
 import React from 'react';
-import { IonGrid, IonImg, IonContent, IonHeader, IonPage, IonCol, IonRow } from '@ionic/react';
+import { useSelector } from 'react-redux'
+import { IonContent, IonHeader, IonPage } from '@ionic/react';
+import AllActivities from './activities/AllActivities';
 import './AllActivitiesTab.css';
 
 
-const AllActivitiesTab = ({history}) => {
+const AllActivitiesTab = () => {
+
+  const suggestedActivityIds = useSelector(state => state.suggestedActivityIds)
+  const favouriteActivitiesMap = useSelector(state => state.favouriteActivities)
+
+  const favouriteActivities = Object.keys(favouriteActivitiesMap)
+
+  const alreadyShown = new Set(suggestedActivityIds)
+  for (const activityId of favouriteActivities) {
+    alreadyShown.add(activityId)
+  }
+
+  const otherActivities = AllActivities.filter(SomeActivity => !alreadyShown.has(SomeActivity.activityId))
+
   return (
     <IonPage>
       <IonHeader>
@@ -21,30 +36,35 @@ const AllActivitiesTab = ({history}) => {
           <br />
 
           <h3>Suggested for you</h3>
+          {
+            suggestedActivityIds
+              .map(activityId => AllActivities.find(activity => activity.activityId === activityId))
+              .map(SomeActivity => (
+                <SomeActivity key={SomeActivity.activityId} listMode />
+              ))
+          }
+          <br />
 
-          <ActivityListItem
-            page="TimeToTakeAWalk"
-            title="Let's take a walk"
-            subtitle="Time to appreciate the environment"
-            image="park"
-            history={history}
-          />
-          <ActivityListItem
-            title="Let's think together"
-            subtitle="Let's imagine we are deep in space"
-            image="spaceship"
-          />
-          <ActivityListItem
-            title="Let's have a brainstorm"
-            subtitle="What are some goals for this year?"
-            image="cloud"
-          />
-          <ActivityListItem
-            title="Let's relax"
-            subtitle="Time to watch something you've been waiting to see"
-            image="fries"
-          />
+          {favouriteActivities.length > 0 &&
+            <h3>Favourite activities</h3>
+          }
+          {
+            favouriteActivities
+              .map(activityId => AllActivities.find(activity => activity.activityId === activityId))
+              .map(SomeActivity => (
+                <SomeActivity key={SomeActivity.activityId} listMode />
+              ))
+          }
 
+          <br />
+          {otherActivities.length > 0
+          && <h3>Other activities</h3>
+          }
+          {
+            otherActivities.map(SomeActivity => (
+              <SomeActivity key={SomeActivity.activityId} listMode />
+            ))
+          }
 
         </div>
 
@@ -54,28 +74,5 @@ const AllActivitiesTab = ({history}) => {
   );
 };
 
-function ActivityListItem(props) {
-  const { page, history, title, subtitle, image } = props
-
-  function onClick(e) {
-    e.preventDefault();
-    history.push(`/activity/${page}`);
-  }
-  return (
-    <div className="activity-list-item">
-      <IonGrid>
-        <IonRow onClick={(page && history) ? onClick : undefined}>
-          <IonCol size="4">
-            <IonImg style={{ height: "5em", width: "90%" }} src={`assets/${image}.png`} />
-          </IonCol>
-          <IonCol size="8">
-            <div className="title">{title}</div>
-            <div className="subtitle">{subtitle}</div>
-          </IonCol>
-        </IonRow>
-      </IonGrid>
-    </div>
-  )
-}
 
 export default AllActivitiesTab;

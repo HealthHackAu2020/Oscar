@@ -1,14 +1,35 @@
 import React from 'react';
-import { IonContent, IonImg, IonCheckbox, IonHeader, IonPage, IonBackButton, IonItem, IonLabel, IonIcon } from '@ionic/react';
+import { useSelector, useDispatch } from 'react-redux'
+
+import {
+  IonGrid, IonRow, IonCol,
+  IonContent, IonImg, IonCheckbox, IonHeader, IonPage, IonBackButton, IonItem, IonLabel, IonIcon } from '@ionic/react';
 import './activity.css';
 
 import { heartOutline, heart } from 'ionicons/icons'
+import { useHistory } from 'react-router';
 
 function ActivityBase(props) {
 
-  const { title, duration, children, imageBig } = props
+  const {
+    activityId, title, duration, children, imageBig,
+    listMode, listSubtitle, listImage
+  } = props
 
-  const isFavourite = false
+  const isFavourite = useSelector(state => !!state.favouriteActivities[activityId])
+  const dispatch = useDispatch()
+
+  function onFavouriteIconClicked() {
+    if (isFavourite) {
+      dispatch({ type: 'remove-favourite', activityId })
+    } else {
+      dispatch({ type: 'add-favourite', activityId })
+    }
+  }
+
+  if (listMode) {
+    return <ActivityListItem {...{ activityId, title, listSubtitle, listImage }} />
+  }
 
   return (
     <IonPage>
@@ -18,7 +39,7 @@ function ActivityBase(props) {
       <IonContent>
         <div className="activity-content">
             <div style={{ float: 'right' }}>
-              <IonIcon className="activity-fav-icon"
+              <IonIcon onClick={onFavouriteIconClicked} className="activity-fav-icon"
                   size='x-large'
                   icon={isFavourite ? heart : heartOutline} />
             </div>
@@ -44,5 +65,31 @@ function ActivityBase(props) {
 
 }
 
-
 export default ActivityBase;
+
+function ActivityListItem(props) {
+  const { activityId, title, listSubtitle, listImage } = props
+
+  const history = useHistory()
+
+  function onClick(e) {
+    e.preventDefault();
+    history.push(`/activity/${activityId}`);
+  }
+  return (
+    <div className="activity-list-item">
+      <IonGrid>
+        <IonRow onClick={(activityId && history) ? onClick : undefined}>
+          <IonCol size="4">
+            <IonImg style={{ height: "5em", width: "90%" }} src={`assets/${listImage}`} />
+          </IonCol>
+          <IonCol size="8">
+            <div className="title">{title}</div>
+            <div className="subtitle">{listSubtitle}</div>
+          </IonCol>
+        </IonRow>
+      </IonGrid>
+    </div>
+  )
+}
+

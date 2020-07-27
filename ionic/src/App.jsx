@@ -10,6 +10,10 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
+
+import { Provider } from 'react-redux'
+import reduxStore from './data/reduxStore'
+
 import { personOutline, calendarOutline, homeOutline } from "ionicons/icons";
 import Home from "./pages/Home";
 import AllActivitiesTab from "./pages/AllActivitiesTab";
@@ -39,26 +43,32 @@ import AllActivities from "./pages/activities/AllActivities";
 
 const App2 = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        {
-          AllActivities.map(activityRenderFunc => (
-            <Route path={"/activity/" + activityRenderFunc.id} component={activityRenderFunc} />
-          ))
-        }
+    <Provider store={reduxStore}>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          {
+            AllActivities.map(activityRenderFunc => (
+              <Route
+                key={activityRenderFunc.activityId}
+                path={"/activity/" + activityRenderFunc.activityId}
+                component={activityRenderFunc}
+              />
+            ))
+          }
 
-        <Route path="/quiz/MoodQuiz" component={MoodQuiz} />
-        <Route path="/quiz/MentalQuiz" component={MentalQuiz} />
+          <Route path="/quiz/MoodQuiz" component={MoodQuiz} />
+          <Route path="/quiz/MentalQuiz" component={MentalQuiz} />
 
-        <Route path="/tabs" component={Tabs} />
+          <Route path="/tabs" component={Tabs} />
 
-        <Route
-          path="/"
-          render={() => <Redirect to="/tabs/home" />}
-          exact={true}
-        />
-      </IonRouterOutlet>
-    </IonReactRouter>
+          <Route
+            path="/"
+            render={() => <Redirect to="/tabs/home" />}
+            exact={true}
+          />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </Provider>
   </IonApp>
 );
 
