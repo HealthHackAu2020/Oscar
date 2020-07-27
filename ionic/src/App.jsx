@@ -81,7 +81,7 @@ function Tabs() {
         </IonTabButton>
         <IonTabButton tab="WelcomePage" href="/tabs/WelcomePage">
           <IonIcon icon={personOutline} />
-          <IonLabel>Settings</IonLabel>
+          <IonLabel>Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
