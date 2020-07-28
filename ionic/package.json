@@ -1,6 +1,5 @@
 {
   "name": "oscar",
-  "homepage": "/Oscar/",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -27,8 +26,6 @@
     "typescript": "3.8.3"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -50,8 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "2.3.0",
-    "gh-pages": "^3.1.0"
+    "@capacitor/cli": "2.3.0"
   },
   "description": "An Ionic project"
 }

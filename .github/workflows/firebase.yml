@@ -27,7 +27,7 @@ jobs:
         working-directory: ./ionic
         run: |
           npm i
-          npm run deploy
+          npm run build
 
       - name: Deploy 🚀
         uses: w9jds/firebase-action@master
