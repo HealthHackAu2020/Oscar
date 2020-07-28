@@ -30,8 +30,8 @@ jobs:
           npm run deploy
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.5.7
+        uses: w9jds/firebase-action@master
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: ionic/build # The folder the action should deploy.
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
