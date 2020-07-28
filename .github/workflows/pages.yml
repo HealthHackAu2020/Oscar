@@ -27,7 +27,7 @@ jobs:
         working-directory: ./ionic
         run: |
           npm i
-          npm run build
+          npm run deploy
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.5.7
