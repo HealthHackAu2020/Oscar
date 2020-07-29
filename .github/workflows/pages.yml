@@ -41,6 +41,8 @@ jobs:
         with:
           name: ionic
           path: ionic/build
+      - name: Download Artifact
+        run: ls
       - name: Deploy 🚀
         uses: w9jds/firebase-action@master
         with:
@@ -48,5 +50,3 @@ jobs:
         env:
           PROJECT_PATH: './ionic'
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: |
-          ls
