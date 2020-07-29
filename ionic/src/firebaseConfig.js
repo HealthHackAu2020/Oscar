@@ -4,13 +4,12 @@ require('dotenv').config()
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-  authDomain: 'oscar-6d8d1.firebaseapp.com',
-  databaseURL: 'https://oscar-6d8d1.firebaseio.com',
-  projectId: 'oscar-6d8d1',
-  storageBucket: 'oscar-6d8d1.appspot.com',
-  messagingSenderId: '432484727295',
-  appId: '1:432484727295:web:f7a2887621b680cec5cfca',
-  measurementId: 'G-4HW0T40CVM',
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 }
 
 firebase.initializeApp(config)
