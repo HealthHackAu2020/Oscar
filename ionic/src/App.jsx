@@ -16,6 +16,7 @@ import reduxStore from './data/reduxStore'
 
 import { personOutline, calendarOutline, homeOutline } from "ionicons/icons";
 import Home from "./pages/Home";
+import AllActivities from "./pages/activities/AllActivities";
 import AllActivitiesTab from "./pages/AllActivitiesTab";
 import WelcomePage from "./pages/WelcomePage";
 import MoodQuiz from "./pages/quiz/MoodQuiz";
@@ -38,9 +39,12 @@ import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
 /* Theme variables */
-import "./theme/variables.css";
+
+// this variables.css seems to break tabs
+// import "./theme/variables.css";
+import "./theme/variables-prev.css";
+
 import "./theme/maxWidth.css";
-import AllActivities from "./pages/activities/AllActivities";
 
 const App2 = () => (
   <IonApp>
