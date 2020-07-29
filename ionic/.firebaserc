@@ -1,5 +1,6 @@
 {
-  "Oscar": {
-    "default": "oscar-6d8d1"
-  },
+  "projects": {
+    "default": "oscar-6d8d1",
+    "testing": "oscar-9b427"
+  }
 }
