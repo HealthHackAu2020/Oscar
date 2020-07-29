@@ -39,6 +39,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import "./theme/maxWidth.css";
 import AllActivities from "./pages/activities/AllActivities";
 
 const App2 = () => (
