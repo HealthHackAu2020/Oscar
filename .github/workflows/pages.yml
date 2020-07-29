@@ -47,11 +47,13 @@ jobs:
           name: ionic
           path: ionic/build
       - name: Show content
-        run: ls
+        run: |
+          ls
+          cd ionic
       - name: Deploy 🚀
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
-          PROJECT_PATH: './ionic'
+          PROJECT_PATH: './ionic/build'
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
