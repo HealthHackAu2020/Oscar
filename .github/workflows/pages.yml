@@ -28,6 +28,11 @@ jobs:
         run: |
           npm i
           npm run build
+      - name: Archive Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: ionic
+          path: ionic/build
 
   deploy:
     name: Deploy
@@ -41,7 +46,7 @@ jobs:
         with:
           name: ionic
           path: ionic/build
-      - name: Download Artifact
+      - name: Show content
         run: ls
       - name: Deploy 🚀
         uses: w9jds/firebase-action@master
