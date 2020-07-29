@@ -31,8 +31,8 @@ jobs:
 
       - name: Deploy 🚀
         uses: w9jds/firebase-action@master
-        working-directory: ./ionic
         with:
           args: deploy --only hosting
         env:
+          PROJECT_PATH: ionic
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
