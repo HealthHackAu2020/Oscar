@@ -1,5 +1,5 @@
-import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import React from 'react'
+import { Redirect, Route } from 'react-router-dom'
 import {
   IonApp,
   IonIcon,
@@ -8,98 +8,100 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-} from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
+} from '@ionic/react'
+import { IonReactRouter } from '@ionic/react-router'
 
 import { Provider } from 'react-redux'
 import reduxStore from './data/reduxStore'
 
-import { personOutline, calendarOutline, homeOutline } from "ionicons/icons";
-import Home from "./pages/Home";
-import AllActivitiesTab from "./pages/AllActivitiesTab";
-import WelcomePage from "./pages/WelcomePage";
-import MoodQuiz from "./pages/quiz/MoodQuiz";
-import MentalQuiz from "./pages/quiz/MentalQuiz";
+import { personOutline, calendarOutline, homeOutline } from 'ionicons/icons'
+import Home from './pages/Home'
+import AllActivitiesTab from './pages/AllActivitiesTab'
+import WelcomePage from './pages/WelcomePage'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import MoodQuiz from './pages/quiz/MoodQuiz'
+import MentalQuiz from './pages/quiz/MentalQuiz'
 
 /* Core CSS required for Ionic components to work properly */
-import "@ionic/react/css/core.css";
+import '@ionic/react/css/core.css'
 
 /* Basic CSS for apps built with Ionic */
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
+import '@ionic/react/css/normalize.css'
+import '@ionic/react/css/structure.css'
+import '@ionic/react/css/typography.css'
 
 /* Optional CSS utils that can be commented out */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
+import '@ionic/react/css/padding.css'
+import '@ionic/react/css/float-elements.css'
+import '@ionic/react/css/text-alignment.css'
+import '@ionic/react/css/text-transformation.css'
+import '@ionic/react/css/flex-utils.css'
+import '@ionic/react/css/display.css'
 
 /* Theme variables */
-import "./theme/variables.css";
-import AllActivities from "./pages/activities/AllActivities";
+import './theme/variables.css'
+import AllActivities from './pages/activities/AllActivities'
 
 const App2 = () => (
   <IonApp>
     <Provider store={reduxStore}>
       <IonReactRouter>
         <IonRouterOutlet>
-          {
-            AllActivities.map(activityRenderFunc => (
-              <Route
-                key={activityRenderFunc.activityId}
-                path={"/activity/" + activityRenderFunc.activityId}
-                component={activityRenderFunc}
-              />
-            ))
-          }
+          {AllActivities.map((activityRenderFunc) => (
+            <Route
+              key={activityRenderFunc.activityId}
+              path={'/activity/' + activityRenderFunc.activityId}
+              component={activityRenderFunc}
+            />
+          ))}
 
-          <Route path="/quiz/MoodQuiz" component={MoodQuiz} />
-          <Route path="/quiz/MentalQuiz" component={MentalQuiz} />
+          <Route path='/quiz/MoodQuiz' component={MoodQuiz} />
+          <Route path='/quiz/MentalQuiz' component={MentalQuiz} />
 
-          <Route path="/tabs" component={Tabs} />
+          <Route path='/tabs' component={Tabs} />
 
           <Route
-            path="/"
-            render={() => <Redirect to="/tabs/home" />}
+            path='/'
+            render={() => <Redirect to='/tabs/home' />}
             exact={true}
           />
         </IonRouterOutlet>
       </IonReactRouter>
     </Provider>
   </IonApp>
-);
+)
 
 function Tabs() {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route path="/tabs/home" component={Home} exact={true} />
+        <Route path='/tabs/home' component={Home} exact={true} />
         <Route
-          path="/tabs/activities"
+          path='/tabs/activities'
           component={AllActivitiesTab}
           exact={true}
         />
-        <Route path="/tabs/WelcomePage" component={WelcomePage} />
+        <Route path='/tabs/WelcomePage' component={WelcomePage} />
+        <Route path='/tabs/Login' component={Login} />
+        <Route path='/tabs/Register' component={Register} />
       </IonRouterOutlet>
-      <IonTabBar slot="bottom">
-        <IonTabButton tab="home" href="/tabs/home">
+      <IonTabBar slot='bottom'>
+        <IonTabButton tab='home' href='/tabs/home'>
           <ion-icon icon={homeOutline}></ion-icon>
           <IonLabel>Home</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="activities" href="/tabs/activities">
+        <IonTabButton tab='activities' href='/tabs/activities'>
           <IonIcon icon={calendarOutline} />
           <IonLabel>Activities</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="WelcomePage" href="/tabs/WelcomePage">
+        <IonTabButton tab='WelcomePage' href='/tabs/WelcomePage'>
           <IonIcon icon={personOutline} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
-  );
+  )
 }
 
-export default App2;
+export default App2
