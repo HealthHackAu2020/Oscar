@@ -1,6 +1,5 @@
 {
   "name": "oscar",
-  "homepage": "/Oscar/",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
