@@ -9,6 +9,8 @@ import {
 } from '@ionic/react'
 
 import './WelcomePage.css'
+import { registerUser } from '../firebaseConfig'
+import { toast } from '../taost'
 
 const Register = ({ history }) => {
   //eslint-disable-next-line
@@ -18,8 +20,17 @@ const Register = ({ history }) => {
   //eslint-disable-next-line
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  function registerUser() {
-    console.log(userName, password, confirmPassword)
+  async function signUp() {
+    if (confirmPassword !== password) {
+      toast('Passwords must match')
+    }
+    if (userName.trim() === '' || password.trim() === '') {
+      toast('Username and Password are required')
+    }
+    const res = await registerUser(userName, password)
+    if (res) {
+      toast('Successfully registered up ')
+    }
   }
   return (
     <IonPage className='container'>
@@ -55,7 +66,7 @@ const Register = ({ history }) => {
         </ion-card>
       </div>
       <div>
-        <IonButton className='start-btn' onClick={registerUser} shape='round'>
+        <IonButton className='start-btn' onClick={signUp} shape='round'>
           Sign Up
         </IonButton>
       </div>

@@ -9,14 +9,21 @@ import {
 } from '@ionic/react'
 
 import './WelcomePage.css'
+import { loginUser } from '../firebaseConfig'
+import { toast } from '../taost'
 
 const Login = ({ history }) => {
   //eslint-disable-next-line
   const [userName, setUserName] = useState('')
   //eslint-disable-next-line
   const [password, setPassword] = useState('')
-  function loginUser() {
-    console.log(userName, password)
+  async function login() {
+    const res = await loginUser(userName, password)
+    if (!res) {
+      toast('Error Logging in with your credentials')
+    } else {
+      toast('You have successfully logged in')
+    }
   }
 
   return (
@@ -46,7 +53,7 @@ const Login = ({ history }) => {
         </ion-card>
       </div>
       <div>
-        <IonButton className='start-btn' onClick={loginUser} shape='round'>
+        <IonButton className='start-btn' onClick={login} shape='round'>
           Login
         </IonButton>
       </div>
