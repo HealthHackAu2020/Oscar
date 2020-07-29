@@ -8,14 +8,71 @@ info:
 servers:
 - url: https://TODO/v1
 tags:
+- name: profile
+  description: Individual profile updates and display 
 - name: moods
-  description: Capture an individuals mood
+  description: Individual mood capture and results
 paths:
+  /profile:
+    put:
+      tags:
+      - profile
+      summary: Update the logged in users profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+        required: true
+      responses:
+        200:
+          description: Profile updated
+          content: {}
+      security:
+      - oscar_auth:
+        - write:profile
+        - write:moods
+    post:
+      tags:
+      - profile
+      summary: Create a profile for a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+        required: true
+      responses:
+        201:
+          description: Profile created
+          content: {}
+        405:
+          description: Profile already created
+          content: {}
+      security:
+      - oscar_auth:
+        - write:profile
+        - write:moods
+    get:
+      tags:
+      - profile
+      summary: Get the logged in users profile
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+      security:
+      - oscar_auth:
+        - read:profile
+        - read:moods
   /moods:
     put:
       tags:
       - moods
-      summary: Update a users mood for today
+      summary: Update the logged in users mood for today
       requestBody:
         content:
           application/json:
@@ -32,7 +89,7 @@ paths:
     post:
       tags:
       - moods
-      summary: Add a mood for today
+      summary: Add a mood for today for the logged in user
       requestBody:
         content:
           application/json:
@@ -44,7 +101,7 @@ paths:
           description: Mood created
           content: {}
         405:
-          description: Mood already requested
+          description: Mood already created for today
           content: {}
       security:
       - oscar_auth:
@@ -52,7 +109,7 @@ paths:
     get:
       tags:
       - moods
-      summary: List all previously recorded moods
+      summary: List all previously recorded moods for the logged in user
       responses:
         200:
           description: successful operation
@@ -67,7 +124,52 @@ paths:
         - read:moods
 components:
   schemas:
-    MoodRecord:
+    Profile:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserProfile'
+        mood:
+          $ref: '#/components/schemas/MoodProfile'
+        activity:
+          $ref: '#/components/schemas/ActivityProfile'
+    UserProfile:
+      type: object
+      properties:
+        firstName:
+          type: string
+        age:
+          type: integer
+    ActivityProfile:
+      type: object
+      properties:
+        suggestedActivities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+        favouriteActivities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+    MoodProfile:
+      type: object
+      properties:
+        latestMood:
+          $ref: '#/components/schemas/Mood'
+        moodHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mood'
+    Activity:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+    Feeling:
       type: object
       properties:
         value:
@@ -80,9 +182,9 @@ components:
       type: object
       properties:
         physical:
-          $ref: '#/components/schemas/MoodRecord'
+          $ref: '#/components/schemas/Feeling'
         mental:
-          $ref: '#/components/schemas/MoodRecord'
+          $ref: '#/components/schemas/Feeling'
         timestamp:
           type: string
           format: date-time
@@ -99,4 +201,3 @@ components:
       type: apiKey
       name: api_key
       in: header
-
