@@ -35,5 +35,5 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          PROJECT_PATH: ionic
+          PROJECT_PATH: ionic/build
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
