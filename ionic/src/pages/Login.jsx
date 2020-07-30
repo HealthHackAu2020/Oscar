@@ -12,17 +12,27 @@ import './WelcomePage.css'
 import { loginUser } from '../firebaseConfig'
 import { toast } from '../taost'
 
+// For updating the application state
+import { useAppContext } from "../context";
+
 const Login = ({ history }) => {
   //eslint-disable-next-line
   const [userName, setUserName] = useState('')
   //eslint-disable-next-line
   const [password, setPassword] = useState('')
+
+  const { userHasAuthenticated } = useAppContext();
+
   async function login() {
     const res = await loginUser(userName, password)
     if (!res) {
+      console.log(res)
       toast('Error Logging in with your credentials')
     } else {
       toast('You have successfully logged in')
+      userHasAuthenticated(true);
+      console.log("set user is authenticated")
+      history.push("/tabs/home");
     }
   }
 

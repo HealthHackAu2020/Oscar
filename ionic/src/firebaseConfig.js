@@ -15,12 +15,15 @@ const config = {
 firebase.initializeApp(config)
 
 export async function loginUser(username, password) {
+  console.log("loginuser")
   try {
     const res = await firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
     console.log(res)
+    return res
   } catch (error) {
+    console.log('failure')
     console.log(error)
   }
 }
