@@ -19,13 +19,13 @@ function rootReducer(state = initialState, action) {
             delete newFavourites[action.activityId]
             return { ...state, favouriteActivities: newFavourites }
 
-        case "@@INIT":
-            return initialState
-
         default:
-            console.warn("REDUX REDUCER: uhandled action", action)
+            if (!action.type || !action.type.startsWith("@@")) {
+                console.warn("reduxStore.js: unhandled action", action)
+            }
     }
     
+    return state;
 }
 
 
