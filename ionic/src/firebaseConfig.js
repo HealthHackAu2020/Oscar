@@ -14,6 +14,14 @@ const config = {
 
 firebase.initializeApp(config)
 
+export function isLoggedIn() {
+  var user = firebase.auth().currentUser;
+  if (user) {
+    return true
+  }
+  return false;
+}
+
 export async function loginUser(username, password) {
   console.log("loginuser")
   try {

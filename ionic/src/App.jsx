@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import {
   IonApp,
@@ -19,6 +19,7 @@ import Home from './pages/Home'
 import AllActivitiesTab from './pages/AllActivitiesTab'
 import WelcomePage from './pages/WelcomePage'
 import Login from './pages/Login'
+import Logout from './pages/Logout'
 import Register from './pages/Register'
 import MoodQuiz from './pages/quiz/MoodQuiz'
 import MentalQuiz from './pages/quiz/MentalQuiz'
@@ -46,13 +47,32 @@ import AllActivities from './pages/activities/AllActivities'
 // For updating the application state
 import { AppContext } from "./context";
 
+import { isLoggedIn } from './firebaseConfig'
+
 function App2() {
 
   const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
 
-  // TODO: trigger this from a logout button
-  function handleLogout() {
-    userHasAuthenticated(false);
+  useEffect(() => {
+    onLoad();
+  }, []);
+  
+  async function onLoad() {
+    try {
+      if (isLoggedIn) {
+        console.log("is logged in")
+        userHasAuthenticated(true);
+      } else {
+        console.log("no user logged in")
+      }
+    }
+    catch(e) {
+      if (e !== 'No current user') {
+        alert(e);
+      }
+    }
+    setIsAuthenticating(false);
   }
 
   function Tabs() {
@@ -71,6 +91,10 @@ function App2() {
           <IonIcon icon={personOutline} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>
+        <IonTabButton tab='Logout' href='/tabs/Logout'>
+          <IonIcon icon={logOutOutline} />
+          <IonLabel>Logout</IonLabel>
+        </IonTabButton>
         </IonTabBar>;
     } else {
       displayOptions = <IonTabBar slot='bottom'>
@@ -85,6 +109,7 @@ function App2() {
       </IonTabBar>;
     }
     return (
+      !isAuthenticating &&
       <IonTabs>
         <IonRouterOutlet>
           <Route path='/tabs/home' component={Home} exact={true} />
@@ -96,6 +121,7 @@ function App2() {
           <Route path='/tabs/WelcomePage' component={WelcomePage} />
           <Route path='/tabs/Login' component={Login} />
           <Route path='/tabs/Register' component={Register} />
+          <Route path='/tabs/Logout' component={Logout} />
         </IonRouterOutlet>
         {displayOptions}
       </IonTabs>
