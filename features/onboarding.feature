@@ -11,7 +11,7 @@ Feature: Onboarding
     @github-5
     Scenario: Loading screen
 
-        Given an actual has been submitted
+        Given a request has been submitted
         When the next page is not ready
         Then it will show an interesting loading screen so that the user is getting feedback that something is happening
 
