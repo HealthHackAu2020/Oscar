@@ -22,4 +22,4 @@ Feature: Inspiration and quotes
 
         Given it's a new day
         When on the home page
-        Then they will be presented with a quote of the day
+        Then a new quote will be shown
