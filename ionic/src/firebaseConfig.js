@@ -2,18 +2,32 @@ import * as firebase from 'firebase'
 import { toast } from './toast'
 require('dotenv').config()
 
-firebase.initializeApp({
+const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
   projectId: process.env.REACT_APP_PROJECT_ID,
-})
+}
+
+firebase.initializeApp(firebaseConfig)
 
 export function addData() {
   firebase
     .firestore()
     .collection('profile')
-    .add({ title: 'first todo', description: 'new todo' })
+    .add({ title: 'second todo', description: 'new todo' })
+    .then((documentReference) => {
+      console.log('document reference ID', documentReference.id)
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
+}
+export function quizResult(result) {
+  firebase
+    .firestore()
+    .collection('moodquiz')
+    .add({ physical: result.physical, mental: { stress: result.mental.stress, optimism: result.mental.optimism, worried: result.mental.anxiety } })
     .then((documentReference) => {
       console.log('document reference ID', documentReference.id)
     })
@@ -22,17 +36,19 @@ export function addData() {
     })
 }
 
-export function getData() {
-  firebase
+export async function getData() {
+  const data = await firebase
     .firestore()
-    .collection('todo')
+    .collection('moodQuiz')
     .get()
     .then((querySnapshot) => {
       console.log(querySnapshot)
+      return querySnapshot
     })
     .catch((err) => {
       console.log(err.message)
     })
+  return data
 }
 
 export function isLoggedIn() {
