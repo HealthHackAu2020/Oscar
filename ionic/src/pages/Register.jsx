@@ -30,7 +30,7 @@ const Register = ({ history }) => {
     const res = await registerUser(userName, password)
     if (res) {
       toast('Successfully registered')
-      history.push("/tabs/Login");
+      history.push('/tabs/Login')
     }
   }
   return (

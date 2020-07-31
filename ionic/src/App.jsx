@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Redirect, Route } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { Redirect, Route } from 'react-router-dom'
 import {
   IonApp,
   IonIcon,
@@ -8,125 +8,137 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-} from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
+} from '@ionic/react'
+import { IonReactRouter } from '@ionic/react-router'
 
 import { Provider } from 'react-redux'
 import reduxStore from './data/reduxStore'
 
-import { personOutline, calendarOutline, homeOutline, keyOutline, logOutOutline, personAddOutline } from "ionicons/icons";
-import Home from "./pages/Home";
-import AllActivities from "./pages/activities/AllActivities";
-import AllActivitiesTab from "./pages/AllActivitiesTab";
-import WelcomePage from "./pages/WelcomePage";
-import Login from "./pages/Login";
-import Logout from "./pages/Logout";
-import Register from "./pages/Register";
-import MoodQuiz from "./pages/quiz/MoodQuiz";
-import MentalQuiz from "./pages/quiz/MentalQuiz";
+import {
+  personOutline,
+  calendarOutline,
+  homeOutline,
+  keyOutline,
+  logOutOutline,
+  personAddOutline,
+} from 'ionicons/icons'
+import Home from './pages/Home'
+import AllActivities from './pages/activities/AllActivities'
+import AllActivitiesTab from './pages/AllActivitiesTab'
+import WelcomePage from './pages/WelcomePage'
+import Login from './pages/Login'
+import Logout from './pages/Logout'
+import Test from './pages/Test'
+import Register from './pages/Register'
+import MoodQuiz from './pages/quiz/MoodQuiz'
+import MentalQuiz from './pages/quiz/MentalQuiz'
 
 /* Core CSS required for Ionic components to work properly */
-import "@ionic/react/css/core.css";
+import '@ionic/react/css/core.css'
 
 /* Basic CSS for apps built with Ionic */
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
+import '@ionic/react/css/normalize.css'
+import '@ionic/react/css/structure.css'
+import '@ionic/react/css/typography.css'
 
 /* Optional CSS utils that can be commented out */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
+import '@ionic/react/css/padding.css'
+import '@ionic/react/css/float-elements.css'
+import '@ionic/react/css/text-alignment.css'
+import '@ionic/react/css/text-transformation.css'
+import '@ionic/react/css/flex-utils.css'
+import '@ionic/react/css/display.css'
 
 /* Theme variables */
 
 // this variables.css seems to break tabs
 // import "./theme/variables.css";
-import "./theme/variables-prev.css";
+import './theme/variables-prev.css'
 
-import "./theme/maxWidth.css";
+import './theme/maxWidth.css'
 
 // For updating the application state
-import { AppContext } from "./context";
+import { AppContext } from './context'
 
 import { isLoggedIn } from './firebaseConfig'
 
 function App2() {
-
-  const [isAuthenticated, userHasAuthenticated] = useState(false);
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [isAuthenticated, userHasAuthenticated] = useState(false)
+  const [isAuthenticating, setIsAuthenticating] = useState(true)
 
   useEffect(() => {
-    onLoad();
-  }, []);
-  
+    onLoad()
+  }, [])
+
   async function onLoad() {
     try {
       if (isLoggedIn()) {
-        userHasAuthenticated(true);
+        userHasAuthenticated(true)
       }
-    }
-    catch(e) {
+    } catch (e) {
       if (e !== 'No current user') {
-        alert(e);
+        alert(e)
       }
     }
-    setIsAuthenticating(false);
+    setIsAuthenticating(false)
   }
 
   function Tabs() {
-    let displayOptions;
-    if (isAuthenticated){
-      displayOptions = <IonTabBar slot='bottom'>
-        <IonTabButton tab='home' href='/tabs/home'>
-          <ion-icon icon={homeOutline}></ion-icon>
-          <IonLabel>Home</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab='activities' href='/tabs/activities'>
-          <IonIcon icon={calendarOutline} />
-          <IonLabel>Activities</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab='WelcomePage' href='/tabs/WelcomePage'>
-          <IonIcon icon={personOutline} />
-          <IonLabel>Profile</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab='Logout' href='/tabs/Logout'>
-          <IonIcon icon={logOutOutline} />
-          <IonLabel>Logout</IonLabel>
-        </IonTabButton>
-        </IonTabBar>;
+    let displayOptions
+    if (isAuthenticated) {
+      displayOptions = (
+        <IonTabBar slot='bottom'>
+          <IonTabButton tab='home' href='/tabs/home'>
+            <ion-icon icon={homeOutline}></ion-icon>
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab='activities' href='/tabs/activities'>
+            <IonIcon icon={calendarOutline} />
+            <IonLabel>Activities</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab='WelcomePage' href='/tabs/WelcomePage'>
+            <IonIcon icon={personOutline} />
+            <IonLabel>Profile</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab='Logout' href='/tabs/Logout'>
+            <IonIcon icon={logOutOutline} />
+            <IonLabel>Logout</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      )
     } else {
-      displayOptions = <IonTabBar slot='bottom'>
-        <IonTabButton tab='Register' href='/tabs/Register'>
-          <IonIcon icon={personAddOutline} />
-          <IonLabel>Signup</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab='Login' href='/tabs/Login'>
-          <IonIcon icon={keyOutline} />
-          <IonLabel>Login</IonLabel>
-        </IonTabButton>
-      </IonTabBar>;
+      displayOptions = (
+        <IonTabBar slot='bottom'>
+          <IonTabButton tab='Register' href='/tabs/Register'>
+            <IonIcon icon={personAddOutline} />
+            <IonLabel>Signup</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab='Login' href='/tabs/Login'>
+            <IonIcon icon={keyOutline} />
+            <IonLabel>Login</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      )
     }
     return (
-      !isAuthenticating &&
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path='/tabs/home' component={Home} exact={true} />
-          <Route
-            path='/tabs/activities'
-            component={AllActivitiesTab}
-            exact={true}
-          />
-          <Route path='/tabs/WelcomePage' component={WelcomePage} />
-          <Route path='/tabs/Login' component={Login} />
-          <Route path='/tabs/Register' component={Register} />
-          <Route path='/tabs/Logout' component={Logout} />
-        </IonRouterOutlet>
-        {displayOptions}
-      </IonTabs>
+      !isAuthenticating && (
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route path='/tabs/home' component={Home} exact={true} />
+            <Route
+              path='/tabs/activities'
+              component={AllActivitiesTab}
+              exact={true}
+            />
+            <Route path='/tabs/WelcomePage' component={WelcomePage} />
+            <Route path='/tabs/Login' component={Login} />
+            <Route path='/tabs/Register' component={Register} />
+            <Route path='/tabs/Logout' component={Logout} />
+            <Route path='/tabs/Test' component={Test} />
+          </IonRouterOutlet>
+          {displayOptions}
+        </IonTabs>
+      )
     )
   }
 
@@ -171,4 +183,3 @@ function App2() {
 }
 
 export default App2
-
