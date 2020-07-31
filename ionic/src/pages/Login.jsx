@@ -13,7 +13,7 @@ import { loginUser } from '../firebaseConfig'
 import { toast } from '../toast'
 
 // For updating the application state
-import { useAppContext } from "../context";
+import { useAppContext } from '../context'
 
 const Login = ({ history }) => {
   //eslint-disable-next-line
@@ -21,7 +21,7 @@ const Login = ({ history }) => {
   //eslint-disable-next-line
   const [password, setPassword] = useState('')
 
-  const { userHasAuthenticated } = useAppContext();
+  const { userHasAuthenticated } = useAppContext()
 
   async function login() {
     const res = await loginUser(userName, password)
@@ -30,8 +30,8 @@ const Login = ({ history }) => {
       toast('Error Logging in with your credentials')
     } else {
       toast('You have successfully logged in')
-      userHasAuthenticated(true);
-      history.push("/tabs/home");
+      userHasAuthenticated(true)
+      history.push('/tabs/home')
     }
   }
 
