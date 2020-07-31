@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
@@ -14,11 +14,14 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Provider } from 'react-redux'
 import reduxStore from './data/reduxStore'
 
-import { personOutline, calendarOutline, homeOutline } from "ionicons/icons";
+import { personOutline, calendarOutline, homeOutline, keyOutline, logOutOutline, personAddOutline } from "ionicons/icons";
 import Home from "./pages/Home";
 import AllActivities from "./pages/activities/AllActivities";
 import AllActivitiesTab from "./pages/AllActivitiesTab";
 import WelcomePage from "./pages/WelcomePage";
+import Login from "./pages/Login";
+import Logout from "./pages/Logout";
+import Register from "./pages/Register";
 import MoodQuiz from "./pages/quiz/MoodQuiz";
 import MentalQuiz from "./pages/quiz/MentalQuiz";
 
@@ -46,65 +49,126 @@ import "./theme/variables-prev.css";
 
 import "./theme/maxWidth.css";
 
-const App2 = () => (
-  <IonApp>
-    <Provider store={reduxStore}>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          {
-            AllActivities.map(activityRenderFunc => (
-              <Route
-                key={activityRenderFunc.activityId}
-                path={"/activity/" + activityRenderFunc.activityId}
-                component={activityRenderFunc}
-              />
-            ))
-          }
+// For updating the application state
+import { AppContext } from "./context";
 
-          <Route path="/quiz/MoodQuiz" component={MoodQuiz} />
-          <Route path="/quiz/MentalQuiz" component={MentalQuiz} />
+import { isLoggedIn } from './firebaseConfig'
 
-          <Route path="/tabs" component={Tabs} />
+function App2() {
 
-          <Route
-            path="/"
-            render={() => <Redirect to="/tabs/home" />}
-            exact={true}
-          />
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </Provider>
-  </IonApp>
-);
+  const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
 
-function Tabs() {
-  return (
-    <IonTabs>
-      <IonRouterOutlet>
-        <Route path="/tabs/home" component={Home} exact={true} />
-        <Route
-          path="/tabs/activities"
-          component={AllActivitiesTab}
-          exact={true}
-        />
-        <Route path="/tabs/WelcomePage" component={WelcomePage} />
-      </IonRouterOutlet>
-      <IonTabBar slot="bottom">
-        <IonTabButton tab="home" href="/tabs/home">
+  useEffect(() => {
+    onLoad();
+  }, []);
+  
+  async function onLoad() {
+    try {
+      if (isLoggedIn()) {
+        userHasAuthenticated(true);
+      }
+    }
+    catch(e) {
+      if (e !== 'No current user') {
+        alert(e);
+      }
+    }
+    setIsAuthenticating(false);
+  }
+
+  function Tabs() {
+    let displayOptions;
+    if (isAuthenticated){
+      displayOptions = <IonTabBar slot='bottom'>
+        <IonTabButton tab='home' href='/tabs/home'>
           <ion-icon icon={homeOutline}></ion-icon>
           <IonLabel>Home</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="activities" href="/tabs/activities">
+        <IonTabButton tab='activities' href='/tabs/activities'>
           <IonIcon icon={calendarOutline} />
           <IonLabel>Activities</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="WelcomePage" href="/tabs/WelcomePage">
+        <IonTabButton tab='WelcomePage' href='/tabs/WelcomePage'>
           <IonIcon icon={personOutline} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>
-      </IonTabBar>
-    </IonTabs>
-  );
+        <IonTabButton tab='Logout' href='/tabs/Logout'>
+          <IonIcon icon={logOutOutline} />
+          <IonLabel>Logout</IonLabel>
+        </IonTabButton>
+        </IonTabBar>;
+    } else {
+      displayOptions = <IonTabBar slot='bottom'>
+        <IonTabButton tab='Register' href='/tabs/Register'>
+          <IonIcon icon={personAddOutline} />
+          <IonLabel>Signup</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='Login' href='/tabs/Login'>
+          <IonIcon icon={keyOutline} />
+          <IonLabel>Login</IonLabel>
+        </IonTabButton>
+      </IonTabBar>;
+    }
+    return (
+      !isAuthenticating &&
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route path='/tabs/home' component={Home} exact={true} />
+          <Route
+            path='/tabs/activities'
+            component={AllActivitiesTab}
+            exact={true}
+          />
+          <Route path='/tabs/WelcomePage' component={WelcomePage} />
+          <Route path='/tabs/Login' component={Login} />
+          <Route path='/tabs/Register' component={Register} />
+          <Route path='/tabs/Logout' component={Logout} />
+        </IonRouterOutlet>
+        {displayOptions}
+      </IonTabs>
+    )
+  }
+
+  return (
+    <IonApp>
+      <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+        <Provider store={reduxStore}>
+          <IonReactRouter>
+            <IonRouterOutlet>
+              {AllActivities.map((activityRenderFunc) => (
+                <Route
+                  key={activityRenderFunc.activityId}
+                  path={'/activity/' + activityRenderFunc.activityId}
+                  component={activityRenderFunc}
+                />
+              ))}
+
+              <Route path='/quiz/MoodQuiz' component={MoodQuiz} />
+              <Route path='/quiz/MentalQuiz' component={MentalQuiz} />
+
+              <Route path='/tabs' component={Tabs} />
+
+              {isAuthenticated ? (
+                <Route
+                  path='/'
+                  render={() => <Redirect to='/tabs/home' />}
+                  exact={true}
+                />
+              ) : (
+                <Route
+                  path='/'
+                  render={() => <Redirect to='/tabs/login' />}
+                  exact={true}
+                />
+              )}
+            </IonRouterOutlet>
+          </IonReactRouter>
+        </Provider>
+      </AppContext.Provider>
+    </IonApp>
+  )
 }
 
-export default App2;
+export default App2
+
