@@ -43,6 +43,7 @@ export async function registerUser(username, password) {
     const res = await firebase
       .auth()
       .createUserWithEmailAndPassword(username, password)
+    return res  
   } catch (error) {
     toast(error.message)
   }

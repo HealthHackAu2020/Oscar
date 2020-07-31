@@ -29,7 +29,8 @@ const Register = ({ history }) => {
     }
     const res = await registerUser(userName, password)
     if (res) {
-      toast('Successfully registered up ')
+      toast('Successfully registered')
+      history.push("/tabs/Login");
     }
   }
   return (
@@ -42,7 +43,7 @@ const Register = ({ history }) => {
           <ion-card-content>
             <IonList>
               <IonItem>
-                <IonLabel position='floating'>Username</IonLabel>
+                <IonLabel position='floating'>Email</IonLabel>
                 <IonInput
                   onIonChange={(e) => setUserName(e.target.value)}
                 ></IonInput>

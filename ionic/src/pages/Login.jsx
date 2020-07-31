@@ -45,7 +45,7 @@ const Login = ({ history }) => {
           <ion-card-content>
             <IonList>
               <IonItem>
-                <IonLabel position='floating'>Username</IonLabel>
+                <IonLabel position='floating'>Email</IonLabel>
                 <IonInput
                   onIonChange={(e) => setUserName(e.target.value)}
                 ></IonInput>
