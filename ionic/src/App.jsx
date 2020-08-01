@@ -31,6 +31,7 @@ import WelcomePage from './pages/WelcomePage'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import Support from './pages/Support'
+import Profile from './pages/Profile'
 import Register from './pages/Register'
 import MoodQuiz from './pages/quiz/MoodQuiz'
 import MentalQuiz from './pages/quiz/MentalQuiz'
@@ -78,7 +79,7 @@ function Tabs(props) {
           <IonIcon icon={calendarOutline} />
           <IonLabel>Activities</IonLabel>
         </IonTabButton>
-        <IonTabButton tab='WelcomePage' href='/tabs/WelcomePage'>
+        <IonTabButton tab='WelcomePage' href='/tabs/Profile'>
           <IonIcon icon={personOutline} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>
@@ -117,6 +118,7 @@ function Tabs(props) {
           <Route path='/tabs/Register' component={Register} />
           <Route path='/tabs/Logout' component={Logout} />
           <Route path='/tabs/Support' component={Support} />
+          <Route path='/tabs/Profile' component={Profile} />
         </IonRouterOutlet>
         {displayOptions}
       </IonTabs>

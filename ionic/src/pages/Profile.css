@@ -1,0 +1,40 @@
+
+.support-page-date {
+    margin: 2em 1em 1em 1.5em;
+}
+
+.support-page-hi {
+    margin: 0.1em 1em 0em 1em;
+    font-size: x-large;
+    font-weight: 600;
+}
+
+.support-page-welcome-msg {
+    padding: 1em;
+    margin: 0.3em;
+    width: 90%;
+}
+
+.support-page-big-button {
+    text-align: center;
+    background-color: white;
+    border-radius: 1em;
+    padding: 0.5em;
+    margin: 0.3em;
+}
+
+.support-page-quote-of-the-day {
+    background-color: white;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 0.3em;
+}
+.support-page-quote-of-the-day div:nth-child(1) {
+    margin-top: 1em;
+    font-weight: bold;
+}
+.support-page-quote-of-the-day div:nth-child(2) {
+    margin-top: 1em;
+    font-weight: 400;
+}
+
