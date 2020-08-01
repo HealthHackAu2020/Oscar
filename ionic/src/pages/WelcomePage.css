@@ -21,15 +21,23 @@
   line-height: 33px;
 }
 
-
 .container{
     text-align: -webkit-center;
-    margin-top: 125px
+    margin-top: 125px;
 }
 
-.start-btn{
-    height: 40px;
-    width: 168px;
-    border-radius: 24px;
-    background-color: #ABC9DA;
+.login-btn {
+  margin: 15px;
+  width: 150px;
+  height: 45px;
+  text-transform: capitalize;
+  --box-shadow: none;
+}
+
+.register-btn {
+  margin: 15px;
+  width: 150px;
+  height: 45px;
+  text-transform: capitalize;
+  --box-shadow: none;
 }

@@ -17,8 +17,8 @@ const Support = ({ support }) => {
       <IonContent>
         <IonHeader collapse="condense"></IonHeader>
         <div>
-          <div className="home-page-hi">Support</div>
-          <div className="home-page-welcome-msg">
+          <div className="support-page-hi">Support</div>
+          <div className="support-page-welcome-msg">
             Sometimes everyone need more assistance.<br />
             <span> Find the below support if you need.</span>
           </div>
@@ -34,7 +34,7 @@ const Support = ({ support }) => {
           </IonRow>
           <IonRow>
             <HomeTabBigButton image="lifeline" />
-            <HomeTabBigButton image="hand" />
+            <HomeTabBigButton image="cloudss" />
           </IonRow>
         </IonGrid>
       </IonContent>
@@ -50,7 +50,7 @@ function HomeTabBigButton(props) {
   }
   return (
     <IonCol size="6" onClick={page ? onClick : undefined}>
-      <div className="home-page-big-button">
+      <div className="support-page-big-button">
         <IonImg
           style={{ height: "10em", width: "90%" }}
           src={`assets/${image}.png`}
@@ -65,9 +65,13 @@ function QuoteOfTheDay(props) {
   const { text, description } = props;
   return (
     <IonCol size="12">
-      <div className="home-page-quote-of-the-day">
+      <div className="support-page-quote-of-the-day">
         <div>{text}</div>
         <div>{description}</div>
+        <IonImg
+          style={{ height: "10em", width: "100%" }}
+          src={`assets/cloudss.png`}
+        />
       </div>
 
     </IonCol>

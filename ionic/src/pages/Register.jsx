@@ -6,11 +6,16 @@ import {
   IonLabel,
   IonList,
   IonButton,
+  IonHeader,
+  IonToolbar,
+  IonTitle
 } from '@ionic/react'
 
 import './WelcomePage.css'
 import { registerUser } from '../firebaseConfig'
 import { toast } from '../toast'
+
+import { arrowForwardSharp } from "ionicons/icons";
 
 const Register = ({ history }) => {
   //eslint-disable-next-line
@@ -30,18 +35,31 @@ const Register = ({ history }) => {
     const res = await registerUser(userName, password)
     if (res) {
       toast('Successfully registered')
-      history.push('/tabs/Login')
+      history.push('/quiz/MoodQuiz')
     }
   }
   return (
     <IonPage className='container'>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Register</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <div>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Sign Up</ion-card-title>
+            <ion-card-title>Enter your details below</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <IonList>
+              <IonItem>
+                <IonLabel position='floating'>First name</IonLabel>
+                <IonInput></IonInput>
+              </IonItem>
+              <IonItem>
+                <IonLabel position='floating'>Last name</IonLabel>
+                <IonInput></IonInput>
+              </IonItem>
               <IonItem>
                 <IonLabel position='floating'>Email</IonLabel>
                 <IonInput
@@ -67,8 +85,14 @@ const Register = ({ history }) => {
         </ion-card>
       </div>
       <div>
-        <IonButton className='start-btn' onClick={signUp} shape='round'>
-          Sign Up
+        <IonButton
+            className="next-btn"
+            color="light"
+            shape="round"
+            onClick={signUp}
+          >
+            Next
+            <ion-icon icon={arrowForwardSharp}></ion-icon>
         </IonButton>
       </div>
     </IonPage>
