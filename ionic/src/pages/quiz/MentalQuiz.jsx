@@ -45,7 +45,7 @@ const MentalQuiz = ({ history }) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonBackButton />
+        <IonBackButton defaultHref="/quiz/MoodQuiz"/>
       </IonHeader>
 
       <div className="container">
