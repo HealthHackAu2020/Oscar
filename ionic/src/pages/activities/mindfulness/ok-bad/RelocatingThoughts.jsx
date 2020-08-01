@@ -13,8 +13,7 @@ export default function ThisActivity(props) {
 
       duration=""
 
-      listImage="activities/small/Relocating-thoughts.png"
-      imageBig="activities/large/Relocating-thoughts.png"
+      image="Relocating-thoughts.png"
 
       {...props} {...{activityId}}
     >
