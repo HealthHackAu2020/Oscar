@@ -24,6 +24,10 @@ const Register = ({ history }) => {
   const [password, setPassword] = useState('')
   //eslint-disable-next-line
   const [confirmPassword, setConfirmPassword] = useState('')
+  //eslint-disable-next-line
+  const [firstName, setFirstName] = useState('')
+  //eslint-disable-next-line
+  const [lastName, setLastName] = useState('')
 
   async function signUp() {
     if (confirmPassword !== password) {
@@ -54,11 +58,15 @@ const Register = ({ history }) => {
             <IonList>
               <IonItem>
                 <IonLabel position='floating'>First name</IonLabel>
-                <IonInput></IonInput>
+                <IonInput
+                  onIonChange={(e) => setFirstName(e.target.value)}>
+                </IonInput>
               </IonItem>
               <IonItem>
                 <IonLabel position='floating'>Last name</IonLabel>
-                <IonInput></IonInput>
+                <IonInput
+                  onIonChange={(e) => setLastName(e.target.value)}>
+                </IonInput>
               </IonItem>
               <IonItem>
                 <IonLabel position='floating'>Email</IonLabel>
