@@ -7,7 +7,7 @@
 .oscar {
     height: 280px;
     width: 334px;
-   
+    margin-top: 50px;
 }
 
 .the-mind-gut-guru {
@@ -19,6 +19,8 @@
   font-weight: 500;
   letter-spacing: 0;
   line-height: 33px;
+  margin-top: 30px;
+
 }
 
 .container{
@@ -34,10 +36,11 @@
   --box-shadow: none;
 }
 
-.register-btn {
-  margin: 15px;
-  width: 150px;
-  height: 45px;
-  text-transform: capitalize;
-  --box-shadow: none;
+.start-btn{
+    height: 40px;
+    width: 168px;
+    margin-bottom: 50px;
+    border-radius: 24px;
+    --background: #ABC9DA;
+    --background-activated: #86A9BA;
 }

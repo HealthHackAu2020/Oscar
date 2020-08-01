@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }from "react";
 import {
   IonImg,
   IonContent,
@@ -11,15 +11,36 @@ import {
 import "./Home.css";
 
 const HomeTab = ({ history }) => {
+
+  const date = new Date();
+
+  const nth = function(d) {
+    if (d > 3 && d < 21) return 'th';
+    switch (d % 10) {
+      case 1:  return "st";
+      case 2:  return "nd";
+      case 3:  return "rd";
+      default: return "th";
+    }
+  }
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  const [firstName] = useState('Lauren')
+
   return (
     <IonPage>
       <IonHeader></IonHeader>
       <IonContent>
         <IonHeader collapse="condense"></IonHeader>
         <div>
-          <div className="home-page-date">18th January 2020</div>
-          <div className="home-page-hi">Good Morning</div>
-          <div className="home-page-hi">Lauren</div>
+  <div className="home-page-date">{dayNames[date.getDay()]}, {date.getDate()}{nth(date.getDate())} of {monthNames[date.getMonth()]} {date.getFullYear()}</div>
+          <div className="home-page-hi">Good {date.getHours() < 12 ? `Morning` : `Afternoon`}</div>
+          <div className="home-page-hi">{firstName}</div>
           <div className="home-page-welcome-msg">
             Glad to hear you're feeling a bit better today.
           </div>
@@ -27,7 +48,7 @@ const HomeTab = ({ history }) => {
         <IonGrid>
           <IonRow>
             <HomeTabBigButton title="Today's activities" image="bulb" history={history} page="/tabs/activities" />
-            <HomeTabBigButton title="Help &amp; Support" image="clouds" />
+            <HomeTabBigButton title="Help &amp; Support" image="clouds" history={history} page="/tabs/Support" />
           </IonRow>
           <IonRow>
             <HomeTabBigButton title="Mood quiz" image="sliders" history={history} page="/quiz/MoodQuiz" />

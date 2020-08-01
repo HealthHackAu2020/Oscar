@@ -36,13 +36,8 @@ const Login = ({ history }) => {
     } else {
       toast('You have successfully logged in')
       userHasAuthenticated(true)
-      history.push('/quiz/MoodQuiz')
+      history.push('/tabs/Home')
     }
-  }
-
-  function register(e) {
-    e.preventDefault();
-    history.push(`/tabs/Register`);
   }
 
   return (

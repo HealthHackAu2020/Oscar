@@ -34,6 +34,7 @@ import Support from './pages/Support'
 import Register from './pages/Register'
 import MoodQuiz from './pages/quiz/MoodQuiz'
 import MentalQuiz from './pages/quiz/MentalQuiz'
+import QuizResult from './pages/quiz/QuizResult'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
@@ -156,6 +157,7 @@ function App2() {
 
               <Route path='/quiz/MoodQuiz' component={MoodQuiz} />
               <Route path='/quiz/MentalQuiz' component={MentalQuiz} />
+              <Route path='/quiz/QuizResult' component={QuizResult} />
 
               <Route path='/tabs' render={() => <Tabs isAuthenticated={isAuthenticated} />} />
 
