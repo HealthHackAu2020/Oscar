@@ -22,7 +22,7 @@ const WelcomePage = ({ history }) => {
       </div>  
       <div className="welcome-buttons">
       <IonButton
-            className="register-btn"
+            className="onboard-btn"
             color="primary"
             shape="round"
             strong
@@ -31,7 +31,7 @@ const WelcomePage = ({ history }) => {
             Register
       </IonButton>
       <IonButton
-            className="login-btn"
+            className="onboard-btn"
             color="light"
             shape="round"
             strong
