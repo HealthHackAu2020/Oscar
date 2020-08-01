@@ -7,35 +7,51 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonButton
 } from "@ionic/react";
 import "./Profile.css";
+import { useAppContext } from '../context'
+import { signOut } from '../firebaseConfig'
 
-const Profile = ({ support }) => {
+
+const Profile = ({ history }) => {
+  const { userHasAuthenticated } = useAppContext()
+  function handleLogout() {
+    signOut()
+    userHasAuthenticated(false)
+    history.push('/welcome')
+  }
   return (
-    <IonPage>
+    <IonPage >
       <IonHeader></IonHeader>
       <IonContent>
         <IonHeader collapse="condense"></IonHeader>
         <div>
-          <div className="support-page-hi">Your Profile</div>
-          <div className="support-page-welcome-msg">
+          <div className="profile-page-hi">Your Profile</div>
+          <div className="profile-page-welcome-msg">
             Edit your information and view your level with Oscar.
           </div>
         </div>
         <IonGrid>
           <ProfileInfo
             text="Lauren"
-            description="I understand that sometimes life's ups and downs are tougher when living with IBD. However, I am not a substitute for healthcare. If you are in a dark place please don't hesitate in contacting the following support. You are not alone."
+            description="You have had IBD for 4 years and signed up with Oscar in 2020. 23 years old studying BA and in your final fourth year at Sydney University"
           />
-          <IonRow>
-            <HomeTabBigButton image="ccA" history={support} page="/tabs/activities" />
-            <HomeTabBigButton image="bblogo" />
-          </IonRow>
-          <IonRow>
-            <HomeTabBigButton image="lifeline" />
-            <HomeTabBigButton image="cloudss" />
-          </IonRow>
         </IonGrid>
+        <div>
+          <div className="profile-page-hi">Activities</div>
+          <IonGrid >
+            <ActivityListItem className="activity-list-item" listSubtitle="Oscar activities completed" streak="10" />
+            <ActivityListItem className="activity-list-item" listSubtitle="Day streak on the app" streak="07" />
+          </IonGrid>
+          <IonGrid className='container'><IonButton
+            className="next-btn"
+            color="light"
+            shape="round"
+            onClick={handleLogout}>
+            Logout
+            </IonButton></IonGrid>
+        </div>
       </IonContent>
     </IonPage >
   );
@@ -49,7 +65,7 @@ function HomeTabBigButton(props) {
   }
   return (
     <IonCol size="6" onClick={page ? onClick : undefined}>
-      <div className="support-page-big-button">
+      <div className="profile-page-big-button">
         <IonImg
           style={{ height: "10em", width: "90%" }}
           src={`assets/${image}.png`}
@@ -64,17 +80,43 @@ function ProfileInfo(props) {
   const { text, description } = props;
   return (
     <IonCol size="12">
-      <div className="support-page-quote-of-the-day">
+      <div className="profile-summary">
         <div>{text}</div>
         <div>{description}</div>
-        <IonImg
-          style={{ height: "10em", width: "100%" }}
-          src={`assets/cloudss.png`}
-        />
+        <div>Edit information</div>
+        <div><h6>Interest</h6></div>
+        <IonGrid>
+          <IonRow >
+            <IonCol className="profile-pill-one">Fashion</IonCol>
+            <IonCol className="profile-pill-two">Brunching</IonCol>
+            <IonCol className="profile-pill-three">Animals</IonCol>
+            <IonCol className="profile-pill-four">Socialising</IonCol>
+          </IonRow>
+        </IonGrid>
       </div>
 
     </IonCol>
   );
+}
+
+
+function ActivityListItem(props) {
+  const { listSubtitle, streak } = props
+
+  return (
+    <div className="activity-list-item">
+      <IonGrid>
+        <IonRow >
+          <IonCol size="3">
+            <div className="streak">{streak}</div>
+          </IonCol>
+          <IonCol size="9">
+            <div className="subtitle">{listSubtitle}</div>
+          </IonCol>
+        </IonRow>
+      </IonGrid>
+    </div>
+  )
 }
 
 export default Profile;

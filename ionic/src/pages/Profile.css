@@ -1,21 +1,21 @@
 
-.support-page-date {
+.profile-page-date {
     margin: 2em 1em 1em 1.5em;
 }
 
-.support-page-hi {
+.profile-page-hi {
     margin: 0.1em 1em 0em 1em;
     font-size: x-large;
     font-weight: 600;
 }
 
-.support-page-welcome-msg {
+.profile-page-welcome-msg {
     padding: 1em;
     margin: 0.3em;
     width: 90%;
 }
 
-.support-page-big-button {
+.profile-page-big-button {
     text-align: center;
     background-color: white;
     border-radius: 1em;
@@ -23,18 +23,76 @@
     margin: 0.3em;
 }
 
-.support-page-quote-of-the-day {
+.profile-summary {
     background-color: white;
     border-radius: 1em;
     padding: 1em;
     margin: 0.3em;
 }
-.support-page-quote-of-the-day div:nth-child(1) {
+.profile-summary div:nth-child(1) {
     margin-top: 1em;
     font-weight: bold;
 }
-.support-page-quote-of-the-day div:nth-child(2) {
+.profile-summary div:nth-child(2) {
+    margin-top: 1em;
+    font-weight: 200;
+}
+.profile-summary div:nth-child(3) {
+    margin-top: 1em;
+    font-weight: 200;
+    text-decoration: underline;
+    color:#0645AD
+}
+.profile-summary div:nth-child(4) {
     margin-top: 1em;
     font-weight: 400;
 }
 
+.profile-pill-one{
+    font-size: small;
+    text-align: center;
+    margin: 0.3em;
+    background-color:#9DBEAA;
+    border-radius: 1em;
+    font-weight: 100;
+}
+.profile-pill-two{
+    font-size: small;
+    text-align: center;
+    margin: 0.3em;
+    background-color:#AAC9DB;
+    border-radius: 1em;
+    font-weight: 100;
+}
+.profile-pill-three{
+    font-size: small;
+    text-align: center;
+    margin: 0.3em;
+    background-color:#828DAB;
+    border-radius: 1em;
+    font-weight: 100;
+}
+.profile-pill-four{
+    font-size: small;
+    text-align: center;
+    margin: 0.3em;
+    background-color:#F38C94;
+    border-radius: 1em;
+    font-weight: 100;
+}
+
+.activity-list-item {
+    background-color: white;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+.activity-list-item div.streak {
+    text-align: center;
+    font-weight: bold;
+    font-size:xx-large
+}
+
+.activity-list-item div.subtitle {
+    margin-top: 1.5em;
+}
