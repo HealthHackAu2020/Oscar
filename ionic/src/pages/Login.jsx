@@ -6,6 +6,9 @@ import {
   IonLabel,
   IonList,
   IonButton,
+  IonHeader,
+  IonToolbar,
+  IonTitle
 } from '@ionic/react'
 
 import './WelcomePage.css'
@@ -14,6 +17,8 @@ import { toast } from '../toast'
 
 // For updating the application state
 import { useAppContext } from '../context'
+
+import { arrowForwardSharp } from "ionicons/icons";
 
 const Login = ({ history }) => {
   //eslint-disable-next-line
@@ -31,16 +36,26 @@ const Login = ({ history }) => {
     } else {
       toast('You have successfully logged in')
       userHasAuthenticated(true)
-      history.push('/tabs/home')
+      history.push('/quiz/MoodQuiz')
     }
+  }
+
+  function register(e) {
+    e.preventDefault();
+    history.push(`/tabs/Register`);
   }
 
   return (
     <IonPage className='container'>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Login</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <div>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Login</ion-card-title>
+            <ion-card-title>Enter your details</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <IonList>
@@ -62,8 +77,14 @@ const Login = ({ history }) => {
         </ion-card>
       </div>
       <div>
-        <IonButton className='start-btn' onClick={login} shape='round'>
-          Login
+        <IonButton
+            className="next-btn"
+            color="light"
+            shape="round"
+            onClick={login}
+          >
+            Next
+            <ion-icon icon={arrowForwardSharp}></ion-icon>
         </IonButton>
       </div>
     </IonPage>
