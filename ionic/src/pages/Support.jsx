@@ -34,7 +34,7 @@ const Support = ({ support }) => {
           </IonRow>
           <IonRow>
             <HomeTabBigButton image="lifeline" />
-            <HomeTabBigButton image="hand" />
+            <HomeTabBigButton image="hub" />
           </IonRow>
         </IonGrid>
       </IonContent>
@@ -68,6 +68,10 @@ function QuoteOfTheDay(props) {
       <div className="home-page-quote-of-the-day">
         <div>{text}</div>
         <div>{description}</div>
+        <IonImg
+          style={{ height: "10em", width: "100%" }}
+          src={`assets/cloudss.png`}
+        />
       </div>
 
     </IonCol>
