@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { firebase } from './firebaseConfig'
 import { Redirect, Route } from 'react-router-dom'
 import {
   IonApp,
@@ -62,11 +63,77 @@ import { AppContext } from './context'
 
 import { isLoggedIn } from './firebaseConfig'
 
+function Tabs(props) {
+  let displayOptions
+  if (props.isAuthenticated) {
+    displayOptions = (
+      <IonTabBar slot='bottom'>
+        <IonTabButton tab='home' href='/tabs/home'>
+          <ion-icon icon={homeOutline}></ion-icon>
+          <IonLabel>Home</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='activities' href='/tabs/activities'>
+          <IonIcon icon={calendarOutline} />
+          <IonLabel>Activities</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='WelcomePage' href='/tabs/WelcomePage'>
+          <IonIcon icon={personOutline} />
+          <IonLabel>Profile</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='Logout' href='/tabs/Logout'>
+          <IonIcon icon={logOutOutline} />
+          <IonLabel>Logout</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+    )
+  } else {
+    displayOptions = (
+      <IonTabBar slot='bottom'>
+        <IonTabButton tab='Register' href='/tabs/Register'>
+          <IonIcon icon={personAddOutline} />
+          <IonLabel>Signup</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab='Login' href='/tabs/Login'>
+          <IonIcon icon={keyOutline} />
+          <IonLabel>Login</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+    )
+  }
+  return (
+    !props.isAuthenticated && (
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route path='/tabs/home' component={Home} exact={true} />
+          <Route
+            path='/tabs/activities'
+            component={AllActivitiesTab}
+            exact={true}
+          />
+          <Route path='/tabs/WelcomePage' component={WelcomePage} />
+          <Route path='/tabs/Login' component={Login} />
+          <Route path='/tabs/Register' component={Register} />
+          <Route path='/tabs/Logout' component={Logout} />
+          <Route path='/tabs/Support' component={Support} />
+        </IonRouterOutlet>
+        {displayOptions}
+      </IonTabs>
+    )
+  )
+}
+
 function App2() {
   const [isAuthenticated, userHasAuthenticated] = useState(false)
   const [isAuthenticating, setIsAuthenticating] = useState(true)
 
   useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        userHasAuthenticated(true)
+      } else {
+        // No user is signed in.
+      }
+    });
     onLoad()
   }, [])
 
@@ -83,64 +150,7 @@ function App2() {
     setIsAuthenticating(false)
   }
 
-  function Tabs() {
-    let displayOptions
-    if (isAuthenticated) {
-      displayOptions = (
-        <IonTabBar slot='bottom'>
-          <IonTabButton tab='home' href='/tabs/home'>
-            <ion-icon icon={homeOutline}></ion-icon>
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab='activities' href='/tabs/activities'>
-            <IonIcon icon={calendarOutline} />
-            <IonLabel>Activities</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab='WelcomePage' href='/tabs/WelcomePage'>
-            <IonIcon icon={personOutline} />
-            <IonLabel>Profile</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab='Logout' href='/tabs/Logout'>
-            <IonIcon icon={logOutOutline} />
-            <IonLabel>Logout</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      )
-    } else {
-      displayOptions = (
-        <IonTabBar slot='bottom'>
-          <IonTabButton tab='Register' href='/tabs/Register'>
-            <IonIcon icon={personAddOutline} />
-            <IonLabel>Signup</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab='Login' href='/tabs/Login'>
-            <IonIcon icon={keyOutline} />
-            <IonLabel>Login</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      )
-    }
-    return (
-      !isAuthenticating && (
-        <IonTabs>
-          <IonRouterOutlet>
-            <Route path='/tabs/home' component={Home} exact={true} />
-            <Route
-              path='/tabs/activities'
-              component={AllActivitiesTab}
-              exact={true}
-            />
-            <Route path='/tabs/WelcomePage' component={WelcomePage} />
-            <Route path='/tabs/Login' component={Login} />
-            <Route path='/tabs/Register' component={Register} />
-            <Route path='/tabs/Logout' component={Logout} />
-            <Route path='/tabs/Support' component={Support} />
-          </IonRouterOutlet>
-          {displayOptions}
-        </IonTabs>
-      )
-    )
-  }
+
 
   return (
     <IonApp>
@@ -159,7 +169,7 @@ function App2() {
               <Route path='/quiz/MoodQuiz' component={MoodQuiz} />
               <Route path='/quiz/MentalQuiz' component={MentalQuiz} />
 
-              <Route path='/tabs' component={Tabs} />
+              <Route path='/tabs' render={() => <Tabs isAuthenticated={isAuthenticated} />} />
 
               {isAuthenticated ? (
                 <Route
