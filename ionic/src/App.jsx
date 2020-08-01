@@ -13,8 +13,9 @@ import {
 } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 
+import { Plugins } from '@capacitor/core';
 import { Provider } from 'react-redux'
-import reduxStore from './data/reduxStore'
+import createStoreWithInitialState from './data/reduxStore'
 
 import {
   personOutline,
@@ -57,7 +58,7 @@ import '@ionic/react/css/display.css'
 // import "./theme/variables.css";
 import './theme/variables-prev.css'
 
-import './theme/maxWidth.css'
+import './App.css'
 
 // For updating the application state
 import { AppContext } from './context'
@@ -105,25 +106,36 @@ function Tabs() {
 }
 
 function App2() {
-  const [isAuthenticated, userHasAuthenticated] = useState(isLoggedIn())
+  // Await Firebase authentication
+  const [isAuthenticated, setUserHasAuthenticated] = useState(isLoggedIn())
   const [isAuthenticating, setIsAuthenticating] = useState(true)
-
-  console.log("App2 isAuthenticated", isAuthenticated)
-
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
-      userHasAuthenticated(!!user)
+      setUserHasAuthenticated(!!user)
       setIsAuthenticating(false)
     });
   }, [])
 
-  if (isAuthenticating) {
-    return <IonSpinner />;
+  // Aawait restorage of redux state from ionic capacitor storage plugin
+  const [reduxStore, setReduxStore] = useState(null)
+  useEffect(() => {
+    Plugins.Storage.get({ key: "oscar-redux" })
+      .then(ret => setReduxStore(createStoreWithInitialState((ret && ret.value) ? JSON.parse(ret.value) : { stateRestoredEmpty: true })))
+      .catch(err => {
+        console.error("Storage.get failed", err)
+        setReduxStore(createStoreWithInitialState({ stateRestoreError: err }))
+      })
+  }, [])
+
+  console.log("App2 isAuthenticated", isAuthenticated)
+  console.log("App2 reduxStore", reduxStore)
+  if (isAuthenticating || !reduxStore) {
+    return <div className="center-spinner"><IonSpinner /></div>;
   }
 
   return (
     <IonApp>
-      <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+      <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated: setUserHasAuthenticated }}>
         <Provider store={reduxStore}>
           <IonReactRouter>
             <IonRouterOutlet>

@@ -1,6 +1,11 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 
-const initialState = {
+import * as Effects from 'redux-saga/effects'
+import createSagaMiddleware from 'redux-saga'
+
+import { Plugins } from '@capacitor/core';
+
+const initialReduxState = {
   suggestedActivityIds: ["TimeToTakeAWalk"],
   favouriteActivities: {},
   completedActivities: {},
@@ -8,7 +13,7 @@ const initialState = {
   physicalMood:''
 };
 
-function rootReducer(state = initialState, action) {
+function rootReducer(state = initialReduxState, action) {
   switch (action.type) {
     case "add-favourite":
       return {
@@ -39,10 +44,10 @@ function rootReducer(state = initialState, action) {
       return { ...state, completedActivities: newDict };
 
     case "add-mental-mood":
-        return{...state, mentalMood: action.mentalMood}
+        return {...state, mentalMood: action.mentalMood}
 
     case "add-physical-mood":
-        return{...state, physicalMood: action.physicalMood}
+        return {...state, physicalMood: action.physicalMood}
 
     default:
       if (!action.type || !action.type.startsWith("@@")) {
@@ -53,8 +58,46 @@ function rootReducer(state = initialState, action) {
   return state;
 }
 
-export default createStore(
-  rootReducer,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+
+
+
+export default function createStoreWithInitialState(initialState) {
+
+  const sagaMiddleware = createSagaMiddleware()
+
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const enhancer = composeEnhancers(
+    applyMiddleware(sagaMiddleware),
+    // other store enhancers if any
+  )
+  const store = createStore(
+    rootReducer,
+    { ...initialReduxState, ...initialState },
+    enhancer,
+  )
+  sagaMiddleware.run(rootSaga)
+  return store
+}
+
+function* rootSaga() {
+  yield Effects.fork(saveToCapacitorSaga)
+}
+
+function* saveToCapacitorSaga() {
+
+  // after every action saves the redux state to capacitor
+
+  while (true) {
+    // wait for any action
+    yield Effects.take()
+
+    // get the store state
+    const state = yield Effects.select()
+
+    // save to capacitor storage plugin
+    yield Effects.call(
+      [Plugins.Storage, Plugins.Storage.set],
+      { key: "oscar-redux", value: JSON.stringify(state) }
+    )
+  }
+}
