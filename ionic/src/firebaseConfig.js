@@ -72,13 +72,22 @@ export function signOut() {
 }
 
 export async function loginUser(username, password) {
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then((_) => firebase.auth()
+  // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  //   .then((_) => firebase.auth()
+  //     .signInWithEmailAndPassword(username, password)
+  //   )
+  //   .catch((error) => {
+  //     console.log(error)
+  //   })
+
+  try {
+    const res = await firebase
+      .auth()
       .signInWithEmailAndPassword(username, password)
-    )
-    .catch((error) => {
-      console.log(error)
-    })
+    return res
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export async function registerUser(username, password) {
