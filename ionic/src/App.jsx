@@ -78,6 +78,7 @@ function Tabs() {
           <Route path='/tabs/Logout' component={Logout} />
           <Route path='/tabs/Support' component={Support} />
           <Route path='/tabs/Profile' component={Profile} />
+          <Route path='/tabs/QuizResult' component={QuizResult} />
         </IonRouterOutlet>
         <IonTabBar slot='bottom'>
           <IonTabButton tab='home' href='/tabs/home'>

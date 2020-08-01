@@ -34,7 +34,7 @@ const MoodQuiz = ({ history }) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonBackButton />
+        <IonBackButton defaultHref="/tabs/home"/>
       </IonHeader>
       <div className="container">
         <h2 className="quiz-title">How are you physically feeling today?</h2>
