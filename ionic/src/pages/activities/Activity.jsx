@@ -33,6 +33,7 @@ function ActivityBase(props) {
   }
 
   const isFavourite = useSelector(state => !!state.favouriteActivities[activityId])
+  const isComplete = useSelector(state => !!state.completedActivities[activityId])
   const dispatch = useDispatch()
 
   function onFavouriteIconClicked() {
@@ -40,6 +41,14 @@ function ActivityBase(props) {
       dispatch({ type: 'remove-favourite', activityId })
     } else {
       dispatch({ type: 'add-favourite', activityId })
+    }
+  }
+
+  function onMarkCompleteClicked() {
+    if (isComplete) {
+      dispatch({ type: 'activity-not-complete', activityId })
+    } else {
+      dispatch({ type: 'activity-complete', activityId, date: new Date() })
     }
   }
 
@@ -70,8 +79,8 @@ function ActivityBase(props) {
 
         <IonImg className="activity-image" src={"/assets/" + imageBig} />
 
-        <IonItem className="activity-complete-checkbox">
-          <IonCheckbox slot="start" />
+        <IonItem className="activity-complete-checkbox" onClick={onMarkCompleteClicked}>
+          <IonCheckbox slot="start" checked={isComplete} />
           <IonLabel>Mark as complete</IonLabel>
         </IonItem>
 
