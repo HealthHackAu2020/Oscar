@@ -7,6 +7,7 @@ import './WelcomePage.css'
 import { addData, getData } from '../firebaseConfig'
 
 const Test = ({ history }) => {
+  //eslint-disable-next-line
   const [todos, setTodos] = useState('')
 
   useEffect(() => {
@@ -20,6 +21,10 @@ const Test = ({ history }) => {
   function testRetreival() {
     const data = getData()
     console.log('here ', data)
+    data.forEach(doc => {
+
+      setTodos(prev => ([...prev, doc.data()]))
+    })
   }
 
   return (
