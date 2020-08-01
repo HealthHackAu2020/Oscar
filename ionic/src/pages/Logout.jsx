@@ -13,7 +13,7 @@ const Logout = ({ history }) => {
   function handleLogout() {
     signOut()
     userHasAuthenticated(false)
-    history.push('/tabs/Login')
+    history.push('/welcome')
   }
 
   return (

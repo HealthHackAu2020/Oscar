@@ -6,11 +6,11 @@ const WelcomePage = ({ history }) => {
 
   function login(e) {
     e.preventDefault();
-    history.push(`/tabs/Login`);
+    history.push(`/Login`);
   }
   function register(e) {
     e.preventDefault();
-    history.push(`/tabs/Register`);
+    history.push(`/Register`);
   }
 
   return (
