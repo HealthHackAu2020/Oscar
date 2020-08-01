@@ -11,6 +11,13 @@ import {
 import "./Home.css";
 
 const HomeTab = ({ history }) => {
+
+  const date = new Date();
+  const hour = date.getHours()
+
+  // TODO: get from context
+  const name = "Lauren"
+  
   return (
     <IonPage>
       <IonHeader></IonHeader>
@@ -18,8 +25,8 @@ const HomeTab = ({ history }) => {
         <IonHeader collapse="condense"></IonHeader>
         <div>
           <div className="home-page-date">18th January 2020</div>
-          <div className="home-page-hi">Good Morning</div>
-          <div className="home-page-hi">Lauren</div>
+          <div className="home-page-hi">Good {hour < 12 ? `Morning` : `Afternoon`}</div>
+          <div className="home-page-hi">{name}</div>
           <div className="home-page-welcome-msg">
             Glad to hear you're feeling a bit better today.
           </div>
