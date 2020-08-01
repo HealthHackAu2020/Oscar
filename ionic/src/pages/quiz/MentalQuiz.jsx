@@ -77,7 +77,7 @@ const MentalQuiz = ({ history }) => {
               color="light"
               shape="round"
               onClick={(e) => {
-                onClick(e, "/quiz/QuizResult");
+                onClick(e, "/tabs/QuizResult");
               }}
             >
               Next
