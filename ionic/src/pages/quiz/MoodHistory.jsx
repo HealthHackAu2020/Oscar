@@ -1,50 +1,89 @@
-import React, { useState } from "react";
+import React  from "react";
 import {
   IonHeader,
   IonPage,
-  IonList,
-  IonItem,
-  IonRange,
-  IonLabel,
   IonButton,
   IonBackButton,
   IonContent,
 } from "@ionic/react";
-import { arrowForwardSharp } from "ionicons/icons";
 import Calendar from 'react-calendar'
-import {  useDispatch } from 'react-redux'
+
+import 'react-calendar/dist/Calendar.css';
+import './MoodHistory.css';
 
 
 export function MoodHistoryPage(props) {
   const { history } = props;
 
+
+  function getDayClassName({ date, view }) {
+
+    if (view != "month") {
+      return
+    }
+
+    if (date >= new Date()) {
+      return // in the future
+    }
+
+    const score = Math.random() * 10
+
+    if (score > 8) {
+      return "mood-history-day-better"
+    } else if (score > 5) {
+      return "mood-history-day-neutral"
+    } else {
+      return "mood-history-day-not-great"
+    }
+  }
+
+
   return (
     <IonPage>
       <IonHeader>
-        <IonBackButton defaultHref="/tabs/home"/>
+        <IonBackButton defaultHref="/tabs/home" />
       </IonHeader>
 
-      <IonContent>
-        <h1>Mood history</h1>
+      <IonContent className="mood-history-content">
+        <div className="mood-history-top">
+          <h1>Mood History</h1>
 
-        <div>
-          Overview of moods this month.
-          Click on one of the days to view more information.
+          <div>
+            Overview of moods this month.
+            Click on one of the days to view more information.
+          </div>
+          <br />
+          <IonButton
+            style={{ width: "15em" }}
+            color="light"
+            shape="round"
+            onClick={(e) => {
+              history.push("/quiz/MoodQuiz");
+            }}
+          >
+            Complete mood quiz
+          </IonButton>
+        </div>
+
+        <div style={{ height: "3em " }} />
+
+        <Calendar
+
+          navigationLabel={
+            ({ date }) => <div><strong>{monthNames[date.getMonth()]}</strong> {date.getFullYear()}</div>
+          }
+          next2Label={null}
+          prev2Label={null}
+
+          tileClassName={getDayClassName}
+
+        />
+        <div className="legend">
+          <span className="not-great">⚫</span> Not a great day
+          <span style={{ marginLeft: '2em'}}></span>
+          <span className="better">⚫</span> A better day
 
         </div>
-        <IonButton
-          className="next-btn"
-          color="light"
-          shape="round"
-          onClick={(e) => {
-            history.push("/quiz/MoodQuiz");
-          }}
-        >
-          Complete mood quiz
-        </IonButton>
-
-
-        <Calendar />
 
 
       </IonContent>
@@ -52,3 +91,7 @@ export function MoodHistoryPage(props) {
   )
 
 }
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
