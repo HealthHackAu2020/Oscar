@@ -1,20 +1,21 @@
 
-.home-page-date {
+.support-page-date {
     margin: 2em 1em 1em 1.5em;
 }
 
-.home-page-hi {
+.support-page-hi {
     margin: 0.1em 1em 0em 1em;
     font-size: x-large;
+    font-weight: 600;
 }
 
-.home-page-welcome-msg {
+.support-page-welcome-msg {
     padding: 1em;
     margin: 0.3em;
     width: 90%;
 }
 
-.home-page-big-button {
+.support-page-big-button {
     text-align: center;
     background-color: white;
     border-radius: 1em;
@@ -22,17 +23,17 @@
     margin: 0.3em;
 }
 
-.home-page-quote-of-the-day {
+.support-page-quote-of-the-day {
     background-color: white;
     border-radius: 1em;
     padding: 1em;
     margin: 0.3em;
 }
-.home-page-quote-of-the-day div:nth-child(1) {
+.support-page-quote-of-the-day div:nth-child(1) {
     margin-top: 1em;
     font-weight: bold;
 }
-.home-page-quote-of-the-day div:nth-child(2) {
+.support-page-quote-of-the-day div:nth-child(2) {
     margin-top: 1em;
     font-weight: 400;
 }
