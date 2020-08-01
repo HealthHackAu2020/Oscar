@@ -20,9 +20,7 @@ import {
   personOutline,
   calendarOutline,
   homeOutline,
-  keyOutline,
   logOutOutline,
-  personAddOutline,
 } from 'ionicons/icons'
 import Home from './pages/Home'
 import AllActivities from './pages/activities/AllActivities'
