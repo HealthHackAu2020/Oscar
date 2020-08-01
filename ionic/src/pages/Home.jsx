@@ -27,7 +27,7 @@ const HomeTab = ({ history }) => {
         <IonGrid>
           <IonRow>
             <HomeTabBigButton title="Today's activities" image="bulb" history={history} page="/tabs/activities" />
-            <HomeTabBigButton title="Help &amp; Support" image="clouds" />
+            <HomeTabBigButton title="Help &amp; Support" image="clouds" history={history} page="/tabs/Support" />
           </IonRow>
           <IonRow>
             <HomeTabBigButton title="Mood quiz" image="sliders" history={history} page="/quiz/MoodQuiz" />
