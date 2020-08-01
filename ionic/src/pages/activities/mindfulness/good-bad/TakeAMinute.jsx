@@ -13,7 +13,7 @@ export default function ThisActivity(props) {
 
       duration=""
 
-      image="TODO.png"
+      image="Lets-just-breathe.png"
 
       {...props} {...{activityId}}
     >

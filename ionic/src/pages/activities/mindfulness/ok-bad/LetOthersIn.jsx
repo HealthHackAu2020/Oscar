@@ -13,7 +13,8 @@ export default function ThisActivity(props) {
 
       duration=""
 
-      image="TODO.png"
+      // Note: changed from TODO.png to fix broken link
+      image="Meet-new-people.png"
 
       {...props} {...{activityId}}
     >
