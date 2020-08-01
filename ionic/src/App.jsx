@@ -3,6 +3,7 @@ import { firebase } from './firebaseConfig'
 import { Redirect, Route } from 'react-router-dom'
 import {
   IonApp,
+  IonSpinner,
   IonIcon,
   IonLabel,
   IonRouterOutlet,
@@ -126,30 +127,18 @@ function App2() {
   const [isAuthenticated, userHasAuthenticated] = useState(isLoggedIn())
   const [isAuthenticating, setIsAuthenticating] = useState(true)
 
+  console.log("App2 isAuthenticated", isAuthenticated)
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        userHasAuthenticated(true)
-      } else {
-        // No user is signed in.
-      }
+      userHasAuthenticated(!!user)
+      setIsAuthenticating(false)
     });
   }, [])
 
-  async function onLoad() {
-    try {
-      if (isLoggedIn()) {
-        userHasAuthenticated(true)
-      }
-    } catch (e) {
-      if (e !== 'No current user') {
-        alert(e)
-      }
-    }
-    setIsAuthenticating(false)
+  if (isAuthenticating) {
+    return <IonSpinner />;
   }
-
-
 
   return (
     <IonApp>
