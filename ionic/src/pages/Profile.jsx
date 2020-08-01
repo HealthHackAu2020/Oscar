@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  IonImg,
   IonContent,
   IonHeader,
   IonPage,
@@ -56,25 +55,6 @@ const Profile = ({ history }) => {
     </IonPage >
   );
 };
-
-function HomeTabBigButton(props) {
-  const { page, history, title, image } = props;
-  function onClick(e) {
-    e.preventDefault();
-    history.push(page)
-  }
-  return (
-    <IonCol size="6" onClick={page ? onClick : undefined}>
-      <div className="profile-page-big-button">
-        <IonImg
-          style={{ height: "10em", width: "90%" }}
-          src={`assets/${image}.png`}
-        />
-        {title}
-      </div>
-    </IonCol>
-  );
-}
 
 function ProfileInfo(props) {
   const { text, description } = props;

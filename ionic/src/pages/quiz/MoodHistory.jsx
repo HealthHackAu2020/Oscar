@@ -18,7 +18,7 @@ export function MoodHistoryPage(props) {
 
   function getDayClassName({ date, view }) {
 
-    if (view != "month") {
+    if (view !== "month") {
       return
     }
 
@@ -79,9 +79,9 @@ export function MoodHistoryPage(props) {
 
         />
         <div className="legend">
-          <span className="not-great">⚫</span> Not a great day
+          <span className="not-great" role="img" aria-label="circle">⚫</span> Not a great day
           <span style={{ marginLeft: '2em'}}></span>
-          <span className="better">⚫</span> A better day
+          <span className="better" role="img" aria-label="circle">⚫</span> A better day
 
         </div>
 
