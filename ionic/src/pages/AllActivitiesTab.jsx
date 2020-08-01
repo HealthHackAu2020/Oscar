@@ -8,12 +8,18 @@ import './AllActivitiesTab.css';
 const AllActivitiesTab = () => {
 
   const suggestedActivityIds = useSelector(state => state.suggestedActivityIds)
+
   const favouriteActivitiesMap = useSelector(state => state.favouriteActivities)
+  const completedActivitiesMap = useSelector(state => state.completedActivities)
 
   const favouriteActivities = Object.keys(favouriteActivitiesMap)
+  const completedActivities = Object.keys(completedActivitiesMap)
 
   const alreadyShown = new Set(suggestedActivityIds)
   for (const activityId of favouriteActivities) {
+    alreadyShown.add(activityId)
+  }
+  for (const activityId of completedActivities) {
     alreadyShown.add(activityId)
   }
 
@@ -57,11 +63,21 @@ const AllActivitiesTab = () => {
           }
 
           <br />
-          {otherActivities.length > 0
-          && <h3>Other activities</h3>
+
+          {otherActivities.length > 0 && <h3>Other activities</h3>
           }
           {
             otherActivities.map(SomeActivity => (
+              <SomeActivity key={SomeActivity.activityId} listMode />
+            ))
+          }
+
+          {completedActivities.length > 0 && <h3>Past activities</h3>
+          }
+          {
+            completedActivities
+            .map(activityId => AllActivities.find(activity => activity.activityId === activityId))
+            .map(SomeActivity => (
               <SomeActivity key={SomeActivity.activityId} listMode />
             ))
           }

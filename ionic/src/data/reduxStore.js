@@ -3,6 +3,7 @@ import { createStore } from "redux";
 const initialState = {
   suggestedActivityIds: ["TimeToTakeAWalk"],
   favouriteActivities: {},
+  completedActivities: {},
   mentalMood:'',
   physicalMood:''
 };
@@ -22,6 +23,20 @@ function rootReducer(state = initialState, action) {
       const newFavourites = { ...state.favouriteActivities };
       delete newFavourites[action.activityId];
       return { ...state, favouriteActivities: newFavourites };
+
+    case "activity-complete":
+      return {
+        ...state,
+        completedActivities: {
+          ...state.completedActivities,
+          [action.activityId]: action.date.toISOString(),
+        },
+      };
+
+    case "activity-not-complete":
+      const newDict = { ...state.completedActivities };
+      delete newDict[action.activityId];
+      return { ...state, completedActivities: newDict };
 
     case "add-mental-mood":
         return{...state, mentalMood: action.mentalMood}
