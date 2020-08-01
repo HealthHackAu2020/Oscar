@@ -21,7 +21,7 @@ export function MoodHistoryPage(props) {
   return (
     <IonPage>
       <IonHeader>
-        <IonBackButton defaultHref="/quiz/MoodQuiz"/>
+        <IonBackButton defaultHref="/tabs/home"/>
       </IonHeader>
 
       <IonContent>
@@ -37,7 +37,7 @@ export function MoodHistoryPage(props) {
           color="light"
           shape="round"
           onClick={(e) => {
-            history.push("/quiz/MentalQuiz");
+            history.push("/quiz/MoodQuiz");
           }}
         >
           Complete mood quiz
