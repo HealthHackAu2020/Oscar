@@ -63,6 +63,7 @@ import './theme/maxWidth.css'
 import { AppContext } from './context'
 
 import { isLoggedIn } from './firebaseConfig'
+import { MoodHistoryPage } from './pages/quiz/MoodHistory'
 
 function Tabs() {
   return (
@@ -144,6 +145,7 @@ function App2() {
               <Route path='/welcome' component={WelcomePage} />
 
               <Route path='/tabs' render={() => <Tabs/>} />
+              <Route path='/MoodHistory' component={MoodHistoryPage} />
 
               {isAuthenticated ? (
                 <Route

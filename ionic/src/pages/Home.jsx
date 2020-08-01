@@ -51,7 +51,7 @@ const HomeTab = ({ history }) => {
             <HomeTabBigButton title="Help &amp; Support" image="clouds" history={history} page="/tabs/Support" />
           </IonRow>
           <IonRow>
-            <HomeTabBigButton title="Mood quiz" image="sliders" history={history} page="/quiz/MoodQuiz" />
+            <HomeTabBigButton title="Mood quiz" image="sliders" history={history} page="/MoodHistory" />
             <HomeTabBigButton title="Connect" image="hand" />
           </IonRow>
 
