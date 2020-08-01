@@ -6,6 +6,27 @@
   --box-shadow: none;
 }
 
+#great {
+  --background: #f2c4d4;
+  --background-activated: #f1a5bf;
+}
+#good {
+  --background: #fde7b3;
+  --background-activated: #f1bc49;
+}
+#meh {
+  --background: #79c8c5;
+  --background-activated: #45b6b2;
+}
+#poor {
+  --background: #1aa2c6;
+  --background-activated: #30879e;
+}
+#rough {
+  --background: #808aa8;
+  --background-activated: #506297;
+}
+
 .next-btn {
   margin-top: 30px;
   margin-bottom: 10px;
