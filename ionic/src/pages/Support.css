@@ -38,3 +38,11 @@
     font-weight: 400;
 }
 
+.support-tab {
+    padding: 0.5em;
+    margin: 1em;
+}
+
+.support-tab-message {
+    text-align: justify;
+}
