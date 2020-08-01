@@ -101,7 +101,7 @@ function Tabs(props) {
     )
   }
   return (
-    !props.isAuthenticated && (
+    (
       <IonTabs>
         <IonRouterOutlet>
           <Route path='/tabs/home' component={Home} exact={true} />
@@ -123,7 +123,7 @@ function Tabs(props) {
 }
 
 function App2() {
-  const [isAuthenticated, userHasAuthenticated] = useState(false)
+  const [isAuthenticated, userHasAuthenticated] = useState(isLoggedIn())
   const [isAuthenticating, setIsAuthenticating] = useState(true)
 
   useEffect(() => {
@@ -134,7 +134,6 @@ function App2() {
         // No user is signed in.
       }
     });
-    onLoad()
   }, [])
 
   async function onLoad() {
@@ -180,7 +179,7 @@ function App2() {
               ) : (
                   <Route
                     path='/'
-                    render={() => <Redirect to='/tabs/login' />}
+                    render={() => <Login />}
                     exact={true}
                   />
                 )}
@@ -188,7 +187,7 @@ function App2() {
           </IonReactRouter>
         </Provider>
       </AppContext.Provider>
-    </IonApp>
+    </IonApp >
   )
 }
 
