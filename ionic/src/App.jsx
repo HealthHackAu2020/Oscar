@@ -28,7 +28,7 @@ import AllActivitiesTab from './pages/AllActivitiesTab'
 import WelcomePage from './pages/WelcomePage'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
-import Test from './pages/Test'
+import Support from './pages/Support'
 import Register from './pages/Register'
 import MoodQuiz from './pages/quiz/MoodQuiz'
 import MentalQuiz from './pages/quiz/MentalQuiz'
@@ -134,7 +134,7 @@ function App2() {
             <Route path='/tabs/Login' component={Login} />
             <Route path='/tabs/Register' component={Register} />
             <Route path='/tabs/Logout' component={Logout} />
-            <Route path='/tabs/Test' component={Test} />
+            <Route path='/tabs/Support' component={Support} />
           </IonRouterOutlet>
           {displayOptions}
         </IonTabs>
@@ -168,12 +168,12 @@ function App2() {
                   exact={true}
                 />
               ) : (
-                <Route
-                  path='/'
-                  render={() => <Redirect to='/tabs/login' />}
-                  exact={true}
-                />
-              )}
+                  <Route
+                    path='/'
+                    render={() => <Redirect to='/tabs/login' />}
+                    exact={true}
+                  />
+                )}
             </IonRouterOutlet>
           </IonReactRouter>
         </Provider>
