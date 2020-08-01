@@ -5,12 +5,14 @@ import { arrowForwardSharp } from "ionicons/icons";
 
 const MoodQuiz = ({ history }) => {
   const [physicalMood, setPhysicalMood] = useState();
+  const [activated, setActivated] = useState("");
 
-  function onClick(e, page, physicalMood) {
+  function onClick(e, page) {
     if (!physicalMood) return;
     e.preventDefault();
-    history.push(page, physicalMood);
+    history.push(page);
   }
+
   return (
     <IonPage>
       <IonHeader>
@@ -22,10 +24,11 @@ const MoodQuiz = ({ history }) => {
         <div>
           <div>
             <IonButton
-              className="mood-btn"
+              className={activated==='great' ?  'active-mood-btn': 'mood-btn'}
               shape="round"
-              id="great"
+              id={activated==='great' ?  'active-great': 'great'}
               onClick={(e) => {
+                setActivated(e.target.id);
                 setPhysicalMood(e.target.id);
               }}
             >
@@ -34,10 +37,11 @@ const MoodQuiz = ({ history }) => {
           </div>
           <div>
             <IonButton
-              className="mood-btn"
+              className={activated==='good' ?  'active-mood-btn': 'mood-btn'}
               shape="round"
-              id="good"
+              id={activated==='good' ?  'active-good': 'good'}
               onClick={(e) => {
+                setActivated(e.target.id);
                 setPhysicalMood(e.target.id);
               }}
             >
@@ -46,10 +50,11 @@ const MoodQuiz = ({ history }) => {
           </div>
           <div>
             <IonButton
-              className="mood-btn"
+              className={activated==='meh' ?  'active-mood-btn': 'mood-btn'}
               shape="round"
-              id="meh"
+              id={activated==='meh' ?  'active-meh': 'meh'}
               onClick={(e) => {
+                setActivated(e.target.id);
                 setPhysicalMood(e.target.id);
               }}
             >
@@ -58,10 +63,11 @@ const MoodQuiz = ({ history }) => {
           </div>
           <div>
             <IonButton
-              className="mood-btn"
+              className={activated==='poor' ?  'active-mood-btn': 'mood-btn'}
               shape="round"
-              id="poor"
+              id={activated==='poor' ?  'active-poor': 'poor'}
               onClick={(e) => {
+                setActivated(e.target.id);
                 setPhysicalMood(e.target.id);
               }}
             >
@@ -70,10 +76,11 @@ const MoodQuiz = ({ history }) => {
           </div>
           <div>
             <IonButton
-              className="mood-btn"
+              className={activated==='rough' ?  'active-mood-btn': 'mood-btn'}
               shape="round"
-              id="rough"
+              id={activated==='rough' ?  'active-rough': 'rough'}
               onClick={(e) => {
+                setActivated(e.target.id);
                 setPhysicalMood(e.target.id);
               }}
             >
