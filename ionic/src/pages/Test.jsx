@@ -22,7 +22,6 @@ const Test = ({ history }) => {
     const data = getData()
     console.log('here ', data)
     data.forEach(doc => {
-
       setTodos(prev => ([...prev, doc.data()]))
     })
   }
