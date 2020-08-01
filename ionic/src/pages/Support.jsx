@@ -16,10 +16,10 @@ const Support = ({ support }) => {
       <IonHeader></IonHeader>
       <IonContent>
         <IonHeader collapse="condense"></IonHeader>
-        <div>
-          <div className="support-page-hi">Support</div>
-          <div className="support-page-welcome-msg">
-            Sometimes everyone need more assistance.<br />
+        <div className="support-tab">
+          <h3>Support</h3>
+          <div className="support-tab-message">
+            Sometimes everyone needs more assistance.<br />
             <span> Find the below support if you need.</span>
           </div>
         </div>

@@ -38,7 +38,7 @@ const HomeTab = ({ history }) => {
       <IonContent>
         <IonHeader collapse="condense"></IonHeader>
         <div>
-  <div className="home-page-date">{dayNames[date.getDay()]}, {date.getDate()}{nth(date.getDate())} of {monthNames[date.getMonth()]} {date.getFullYear()}</div>
+          <div className="home-page-date">{dayNames[date.getDay()]}, {date.getDate()}{nth(date.getDate())} of {monthNames[date.getMonth()]} {date.getFullYear()}</div>
           <div className="home-page-hi">Good {date.getHours() < 12 ? `Morning` : `Afternoon`}</div>
           <div className="home-page-hi">{firstName}</div>
           <div className="home-page-welcome-msg">
