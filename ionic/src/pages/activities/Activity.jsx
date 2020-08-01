@@ -62,7 +62,7 @@ function ActivityBase(props) {
           <div>
             <h2 className="activity-title">{title}</h2>
           </div>
-          <div className="activity-duration">{duration}</div>
+          {duration && <div className="activity-duration">{duration}</div>}
           <div className="activity-text">
             {children}
           </div>
