@@ -15,9 +15,20 @@ const MoodQuiz = ({ history }) => {
     history.push(page);
   }
   
-  function btnSelect(mentalMood){
-    setActivated(mentalMood);
-    dispatch({type: 'add-mental-mood', mentalMood});
+  function btnSelect(physicalMood){
+    setActivated(physicalMood);
+    const simplifiedMood = simplifyPhysicalMood(physicalMood)
+    dispatch({type: 'add-physical-mood', physicalMood:simplifiedMood});
+  }
+
+  function simplifyPhysicalMood(physicalMood){
+    if(physicalMood=== 'great' || physicalMood=== 'good' ){
+      return 'good'
+    }
+    if (physicalMood === 'meh'){
+      return 'ok'
+    }
+    return 'bad'
   }
   
   return (
@@ -27,7 +38,7 @@ const MoodQuiz = ({ history }) => {
       </IonHeader>
       <div className="container">
         <h2 className="quiz-title">How are you physically feeling today?</h2>
-        <p className="quiz-tet">Select a feeling that best suit you</p>
+        <p className="quiz-text">Select a feeling that best suit you</p>
         <div>
           <div>
             <IonButton

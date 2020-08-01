@@ -1,0 +1,23 @@
+.all-activities-tab {
+    padding: 0.5em;
+    margin: 1em;
+    font-family: Avenir;
+}
+
+.activities-tab-message {
+    text-align: justify;
+    font-family: Avenir;
+}
+
+.activity-list-item {
+    background-color: white;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+.activity-list-item div.title {
+    font-weight: bold;
+}
+.activity-list-item div {
+    margin-top: 0.5em;
+}
