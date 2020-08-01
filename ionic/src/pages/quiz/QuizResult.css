@@ -1,23 +1,55 @@
+:root {
+  font-family: Avenir;
+}
+
 .all-activities-tab {
-    padding: 0.5em;
-    margin: 1em;
-    font-family: Avenir;
+  padding: 0.5em;
+  margin: 1em;
+  font-family: Avenir;
 }
 
 .activities-tab-message {
-    text-align: justify;
-    font-family: Avenir;
+  text-align: justify;
+  font-family: Avenir;
 }
 
 .activity-list-item {
-    background-color: white;
-    border-radius: 1em;
-    margin: 1em;
+  background-color: white;
+  border-radius: 1em;
+  margin: 1em;
 }
 
 .activity-list-item div.title {
-    font-weight: bold;
+  font-weight: bold;
 }
 .activity-list-item div {
-    margin-top: 0.5em;
+  margin-top: 0.5em;
+}
+
+.home-page-quote-of-the-day {
+  margin: 1em;
+}
+
+.mindfulness-title {
+  background-color: #fee7b3;
+}
+.quote-title {
+  background-color: #dfcfec;
+}
+
+.sub-title {
+  height: 17px;
+  width: 130px;
+  color: #4a4a4a;
+  font-family: Avenir;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.35px;
+  line-height: 17px;
+  text-align: left;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: none;
 }

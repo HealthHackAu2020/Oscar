@@ -1,38 +1,32 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { IonContent, IonHeader, IonPage, IonCol } from "@ionic/react";
-import AllActivities from "../activities/AllActivities";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonCol,
+  IonCard,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCardHeader,
+  IonCardContent,
+} from "@ionic/react";
 import generateRec from "./recGenerator";
 import "./QuizResult.css";
 
 const QuizResult = () => {
-  const suggestedActivityIds = useSelector(
-    (state) => state.suggestedActivityIds
-  );
-  const favouriteActivitiesMap = useSelector(
-    (state) => state.favouriteActivities
-  );
   const completedActivitiesMap = useSelector(
     (state) => state.completedActivities
   );
-  const completedActivities = Object.keys(completedActivitiesMap);
-
   const physicalMood = useSelector((state) => state.physicalMood);
   const mentalMood = useSelector((state) => state.mentalMood);
+
+  const completedActivities = Object.keys(completedActivitiesMap);
 
   const SuggestedActivity = generateRec(
     { physicalMood, mentalMood },
     completedActivities
   );
-  console.log("QuizResult -> suggestedActivity", SuggestedActivity)
-
-  const favouriteActivities = Object.keys(favouriteActivitiesMap);
-
-  const alreadyShown = new Set(suggestedActivityIds);
-  for (const activityId of favouriteActivities) {
-    alreadyShown.add(activityId);
-  }
-
 
   return (
     <IonPage>
@@ -47,12 +41,26 @@ const QuizResult = () => {
           </div>
           <br />
 
-          <h3>Mindfulness activity</h3>
-          {SuggestedActivity && <SuggestedActivity key={SuggestedActivity} listMode />}
+          <IonCard color="light" className='card'>
+            <IonCardHeader>
+              <IonCardSubtitle className="sub-title mindfulness-title">
+                Mindfulness activity
+              </IonCardSubtitle>
+              <IonCardTitle>Try take some time for you today</IonCardTitle>
+            </IonCardHeader>
+
+            <IonCardContent>
+              Oscar believes that when you are feeling not well mentally to take
+              some time out. I think you should try the escape activity and try
+              look after yourself today.
+            </IonCardContent>
+            {SuggestedActivity && (
+              <SuggestedActivity key={SuggestedActivity} listMode />
+            )}
+          </IonCard>
 
           <br />
-          
-          <h3>Quote of the day</h3>
+
           <QuoteOfTheDay
             text="Whoever wants to reach a distant goal must take small steps"
             author="Helmut Schmidt"
@@ -66,13 +74,16 @@ const QuizResult = () => {
 function QuoteOfTheDay(props) {
   const { text, author } = props;
   return (
-    <IonCol size="12">
-      <div className="home-page-quote-of-the-day">
-        
-        <div>{text}</div>
-        <div>— {author}</div>
-      </div>
-    </IonCol>
+    <IonCard color="light" className='card'>
+      <IonCardHeader>
+        <IonCardSubtitle className="sub-title quote-title">
+        Quote of the day
+        </IonCardSubtitle>
+        <IonCardTitle>{text}</IonCardTitle>
+      </IonCardHeader>
+
+      <IonCardContent>— {author}</IonCardContent>
+    </IonCard>
   );
 }
 
