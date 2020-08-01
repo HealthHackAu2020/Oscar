@@ -11,6 +11,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
+export { firebase }
+
 export function addData() {
   firebase
     .firestore()
@@ -51,9 +53,18 @@ export async function getData() {
   return data
 }
 
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    console.log('user is still logged in', user)
+  } else {
+    // No user is signed in.
+  }
+});
+
 export function isLoggedIn() {
   var user = firebase.auth().currentUser
   if (user) {
+    console.log('user is still logged in', user)
     return true
   }
   return false
@@ -63,27 +74,15 @@ export function signOut() {
   firebase
     .auth()
     .signOut()
-    .then(function () {
-      // Signed out
-    })
-    .catch(function (error) {
-      toast(error.message)
-    })
 }
 
 export async function loginUser(username, password) {
-  // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-  //   .then((_) => firebase.auth()
-  //     .signInWithEmailAndPassword(username, password)
-  //   )
-  //   .catch((error) => {
-  //     console.log(error)
-  //   })
 
   try {
     const res = await firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
+    console.log(res.user)
     return res
   } catch (error) {
     console.log(error)

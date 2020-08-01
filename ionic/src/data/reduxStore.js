@@ -2,8 +2,9 @@ import { createStore } from "redux";
 
 const initialState = {
   suggestedActivityIds: ["TimeToTakeAWalk"],
-
   favouriteActivities: {},
+  mentalMood:'',
+  physicalMood:''
 };
 
 function rootReducer(state = initialState, action) {
@@ -21,6 +22,12 @@ function rootReducer(state = initialState, action) {
       const newFavourites = { ...state.favouriteActivities };
       delete newFavourites[action.activityId];
       return { ...state, favouriteActivities: newFavourites };
+
+    case "add-mental-mood":
+        return{...state, mentalMood: action.mentalMood}
+
+    case "add-physical-mood":
+        return{...state, physicalMood: action.physicalMood}
 
     default:
       if (!action.type || !action.type.startsWith("@@")) {

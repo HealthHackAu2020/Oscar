@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  IonContent,
   IonHeader,
   IonPage,
   IonList,
@@ -11,16 +10,20 @@ import {
   IonBackButton,
 } from "@ionic/react";
 import { arrowForwardSharp } from "ionicons/icons";
+import {  useDispatch } from 'react-redux'
 
 import "./MentalQuiz.css";
 
 const MentalQuiz = ({ history }, props) => {
+  const dispatch = useDispatch();
   const [stressed, setStressed] = useState(0);
-  const [optimistic, setOptimistic] = useState(0);
+  const [frustrated, setFrustrated] = useState(0);
   const [worried, setWorried] = useState(0);
 
   function onClick(e, page) {
     e.preventDefault();
+    const physicalMood = stressed + frustrated + worried
+    dispatch({type: 'add-physical-mood', physicalMood})
     history.push(page);
   }
 
@@ -34,60 +37,60 @@ const MentalQuiz = ({ history }, props) => {
         <IonBackButton />
       </IonHeader>
 
-      <IonContent className="container">
-        <h1 className="quiz-title">How are you mentally feeling today?</h1>
-        <h3 classNmae="quiz-text">Use the sliders to answer the below moods</h3>
-      </IonContent>
-      <IonContent>
-        <IonList>
-          <RangeBar
-            handler={handler}
-            value={stressed}
-            setState={setStressed}
-            parameter="Stressed"
-          ></RangeBar>
-          <RangeBar
-            handler={handler}
-            value={optimistic}
-            setState={setOptimistic}
-            parameter="Optimistic"
-          ></RangeBar>
-          <RangeBar
-            handler={handler}
-            value={worried}
-            setState={setWorried}
-            parameter="Worried"
-          ></RangeBar>
-        </IonList>
-        <div>
-          <IonButton
-            className="next-btn"
-            color="light"
-            shape="round"
-            onClick={(e) => {
-              onClick(e, "/quiz/MentalQuiz");
-            }}
-          >
-            Next
-            <ion-icon icon={arrowForwardSharp}></ion-icon>
-          </IonButton>
+      <div className="container">
+        <h2 className="quiz-title">How are you mentally feeling today?</h2>
+        <p className="quiz-text">Use the sliders to answer the below moods</p>
+        {/* <div> */}
+          <IonList>
+            <RangeBar
+              handler={handler}
+              value={stressed}
+              setState={setStressed}
+              parameter="Stressed"
+            ></RangeBar>
+            <RangeBar
+              handler={handler}
+              value={frustrated}
+              setState={setFrustrated}
+              parameter="Frustrated"
+            ></RangeBar>
+            <RangeBar
+              handler={handler}
+              value={worried}
+              setState={setWorried}
+              parameter="Worried"
+            ></RangeBar>
+          </IonList>
+          <div>
+            <IonButton
+              className="next-btn"
+              color="light"
+              shape="round"
+              onClick={(e) => {
+                onClick(e, "/quiz/MentalQuiz");
+              }}
+            >
+              Next
+              <ion-icon icon={arrowForwardSharp}></ion-icon>
+            </IonButton>
+          </div>
         </div>
-      </IonContent>
+      {/* </div> */}
     </IonPage>
   );
 };
 
 function RangeBar(props) {
-  const { parameter, handler, value , setState} = props;
+  const { parameter, handler, value, setState } = props;
   return (
-    <>
-      <IonLabel>{parameter}</IonLabel>
+    <div className='bar-container'>
+      <IonLabel className='range-bar-label'>{parameter}</IonLabel>
       <IonItem lines="none">
         <IonRange
           className="range-bar"
           min={0}
           max={10}
-          pin={true}
+          pin={false}
           value={value}
           onIonChange={(e) => handler(setState, e.detail.value)}
         >
@@ -95,7 +98,7 @@ function RangeBar(props) {
           <IonLabel slot="end">10</IonLabel>
         </IonRange>
       </IonItem>
-    </>
+    </div>
   );
 }
 
