@@ -1,4 +1,4 @@
-name: oscar-build
+name: firebase-build
 
 on:
   push:
