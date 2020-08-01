@@ -18,12 +18,11 @@ const MoodQuiz = ({ history }) => {
       </IonHeader>
       <div className="container">
         <h2 className="quiz-title">How are you physically feeling today?</h2>
-        <p className='quiz-tet'>Select a feeling that best suit you</p>
+        <p className="quiz-tet">Select a feeling that best suit you</p>
         <div>
           <div>
             <IonButton
               className="mood-btn"
-              color="danger"
               shape="round"
               id="great"
               onClick={(e) => {
@@ -36,7 +35,6 @@ const MoodQuiz = ({ history }) => {
           <div>
             <IonButton
               className="mood-btn"
-              color="warning"
               shape="round"
               id="good"
               onClick={(e) => {
@@ -49,7 +47,6 @@ const MoodQuiz = ({ history }) => {
           <div>
             <IonButton
               className="mood-btn"
-              color="success"
               shape="round"
               id="meh"
               onClick={(e) => {
@@ -62,7 +59,6 @@ const MoodQuiz = ({ history }) => {
           <div>
             <IonButton
               className="mood-btn"
-              color="tertiary"
               shape="round"
               id="poor"
               onClick={(e) => {
@@ -75,7 +71,6 @@ const MoodQuiz = ({ history }) => {
           <div>
             <IonButton
               className="mood-btn"
-              color="medium"
               shape="round"
               id="rough"
               onClick={(e) => {
@@ -93,7 +88,7 @@ const MoodQuiz = ({ history }) => {
               onClick(e, "/quiz/MentalQuiz", physicalMood);
             }}
           >
-            Next 
+            Next
             <ion-icon icon={arrowForwardSharp}></ion-icon>
           </IonButton>
         </div>
