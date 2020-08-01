@@ -36,7 +36,7 @@ const Login = ({ history }) => {
     } else {
       toast('You have successfully logged in')
       userHasAuthenticated(true)
-      history.push('/tabs/Home')
+      history.push('/quiz/MoodQuiz')
     }
   }
 
