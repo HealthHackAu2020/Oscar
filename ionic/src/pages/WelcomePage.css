@@ -12,7 +12,6 @@
 
 .the-mind-gut-guru {
   height: 33px;
-  width: 203px;
   color: #FFFFFF;
   font-family: Avenir;
   font-size: 24px;
@@ -25,6 +24,7 @@
 
 .container{
     text-align: -webkit-center;
+    text-align: -moz-center;
     margin-top: 125px;
 }
 
