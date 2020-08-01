@@ -14,7 +14,7 @@ import {  useDispatch } from 'react-redux'
 
 import "./MentalQuiz.css";
 
-const MentalQuiz = ({ history }, props) => {
+const MentalQuiz = ({ history }) => {
   const dispatch = useDispatch();
   const [stressed, setStressed] = useState(0);
   const [frustrated, setFrustrated] = useState(0);
@@ -22,9 +22,20 @@ const MentalQuiz = ({ history }, props) => {
 
   function onClick(e, page) {
     e.preventDefault();
-    const physicalMood = stressed + frustrated + worried
-    dispatch({type: 'add-physical-mood', physicalMood})
+    const total = stressed + frustrated + worried;
+    const mentalMood = convertMentalMoodToString(total)
+    dispatch({type: 'add-mental-mood', mentalMood})
     history.push(page);
+  }
+
+  function convertMentalMoodToString(mentalMood){
+    if(mentalMood <= 10){
+      return 'good'
+    }
+    if(mentalMood <= 10){
+      return 'ok'
+    }
+    return 'bad'
   }
 
   function handler(condition, value) {
@@ -40,7 +51,6 @@ const MentalQuiz = ({ history }, props) => {
       <div className="container">
         <h2 className="quiz-title">How are you mentally feeling today?</h2>
         <p className="quiz-text">Use the sliders to answer the below moods</p>
-        {/* <div> */}
           <IonList>
             <RangeBar
               handler={handler}
@@ -67,7 +77,7 @@ const MentalQuiz = ({ history }, props) => {
               color="light"
               shape="round"
               onClick={(e) => {
-                onClick(e, "/quiz/MentalQuiz");
+                onClick(e, "/quiz/QuizResult");
               }}
             >
               Next
@@ -75,7 +85,6 @@ const MentalQuiz = ({ history }, props) => {
             </IonButton>
           </div>
         </div>
-      {/* </div> */}
     </IonPage>
   );
 };
