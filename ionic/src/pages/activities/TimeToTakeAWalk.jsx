@@ -11,8 +11,8 @@ export default function ThisActivity(props) {
       duration="5 — 20 minutes"
 
       listSubtitle="Time to appreciate the environment"
-      listImage="park.png"
 
+      listImage="park.png"
       imageBig="park-big.png"
 
       {...props} {...{activityId}}

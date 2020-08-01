@@ -1,6 +1,6 @@
 import React from 'react';
-import Activity from '../Activity'
-import { TameYourGut } from '../utils/Credits'
+import Activity from '../../Activity'
+import { TameYourGut } from '../../utils/Credits'
 
 // don't change this string lightly - it's used to store activity favourites and history
 const activityId = "RelocatingThoughts" 
@@ -13,8 +13,8 @@ export default function ThisActivity(props) {
 
       duration=""
 
-      listImage="park.png"
-      imageBig="park-big.png"
+      listImage="activities/small/Relocating-thoughts.png"
+      imageBig="activities/large/Relocating-thoughts.png"
 
       {...props} {...{activityId}}
     >

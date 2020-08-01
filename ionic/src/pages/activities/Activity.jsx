@@ -12,9 +12,25 @@ import { useHistory } from 'react-router';
 function ActivityBase(props) {
 
   const {
-    activityId, title, duration, children, imageBig,
-    listMode, listSubtitle, listImage
+    activityId, title, duration, children,
+    image,
+    listMode, listSubtitle, 
   } = props
+
+  const [ imageBig, listImage ] = function() {
+    if (image) {
+      return ["activities/large/" + image, "activities/small/" + image]
+    } else {
+      return [props.imageBig, props.listImage]
+    }
+  }()
+
+  if (!imageBig) {
+    console.warning("Missing big image for ", activityId)
+  }
+  if (!listImage) {
+    console.warning("Missing list image for ", activityId)
+  }
 
   const isFavourite = useSelector(state => !!state.favouriteActivities[activityId])
   const dispatch = useDispatch()

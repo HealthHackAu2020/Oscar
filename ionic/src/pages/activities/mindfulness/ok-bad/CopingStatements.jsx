@@ -1,6 +1,6 @@
 import React from 'react';
-import Activity from '../Activity'
-import { AnxietyCanada } from '../utils/Credits'
+import Activity from '../../Activity'
+import { AnxietyCanada } from '../../utils/Credits'
 
 // don't change this string lightly - it's used to store activity favourites and history
 const activityId = "CopingStatements" 
