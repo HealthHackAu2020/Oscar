@@ -2,17 +2,24 @@ import React, { useState } from "react";
 import { IonButton, IonPage, IonHeader, IonBackButton } from "@ionic/react";
 import "./MoodQuiz.css";
 import { arrowForwardSharp } from "ionicons/icons";
+import {  useDispatch } from 'react-redux'
+
 
 const MoodQuiz = ({ history }) => {
-  const [physicalMood, setPhysicalMood] = useState();
+  const dispatch = useDispatch()
   const [activated, setActivated] = useState("");
 
   function onClick(e, page) {
-    if (!physicalMood) return;
+    if (!activated) return;
     e.preventDefault();
     history.push(page);
   }
-
+  
+  function btnSelect(mentalMood){
+    setActivated(mentalMood);
+    dispatch({type: 'add-mental-mood', mentalMood});
+  }
+  
   return (
     <IonPage>
       <IonHeader>
@@ -28,8 +35,7 @@ const MoodQuiz = ({ history }) => {
               shape="round"
               id={activated==='great' ?  'active-great': 'great'}
               onClick={(e) => {
-                setActivated(e.target.id);
-                setPhysicalMood(e.target.id);
+                btnSelect(e.target.id);
               }}
             >
               Great
@@ -41,8 +47,7 @@ const MoodQuiz = ({ history }) => {
               shape="round"
               id={activated==='good' ?  'active-good': 'good'}
               onClick={(e) => {
-                setActivated(e.target.id);
-                setPhysicalMood(e.target.id);
+                btnSelect(e.target.id);
               }}
             >
               Good
@@ -54,8 +59,7 @@ const MoodQuiz = ({ history }) => {
               shape="round"
               id={activated==='meh' ?  'active-meh': 'meh'}
               onClick={(e) => {
-                setActivated(e.target.id);
-                setPhysicalMood(e.target.id);
+                btnSelect(e.target.id);
               }}
             >
               Meh
@@ -67,8 +71,7 @@ const MoodQuiz = ({ history }) => {
               shape="round"
               id={activated==='poor' ?  'active-poor': 'poor'}
               onClick={(e) => {
-                setActivated(e.target.id);
-                setPhysicalMood(e.target.id);
+                btnSelect(e.target.id);
               }}
             >
               Poor
@@ -80,8 +83,7 @@ const MoodQuiz = ({ history }) => {
               shape="round"
               id={activated==='rough' ?  'active-rough': 'rough'}
               onClick={(e) => {
-                setActivated(e.target.id);
-                setPhysicalMood(e.target.id);
+                btnSelect(e.target.id);
               }}
             >
               Rough
@@ -92,7 +94,7 @@ const MoodQuiz = ({ history }) => {
             color="light"
             shape="round"
             onClick={(e) => {
-              onClick(e, "/quiz/MentalQuiz", physicalMood);
+              onClick(e, "/quiz/MentalQuiz");
             }}
           >
             Next

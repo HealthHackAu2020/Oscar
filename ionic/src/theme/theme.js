@@ -8,4 +8,6 @@ export default {
   primaryBlack: "#000000",
   primaryWhite: "#ffffff",
   primaryGray: "#f7f7f7",
+
+  
 };
