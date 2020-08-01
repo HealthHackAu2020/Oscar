@@ -72,6 +72,14 @@ export function signOut() {
 }
 
 export async function loginUser(username, password) {
+  // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  //   .then((_) => firebase.auth()
+  //     .signInWithEmailAndPassword(username, password)
+  //   )
+  //   .catch((error) => {
+  //     console.log(error)
+  //   })
+
   try {
     const res = await firebase
       .auth()
