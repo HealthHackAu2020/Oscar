@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IonButton, IonPage, IonHeader, IonBackButton } from "@ionic/react";
+import { IonButton, IonPage, IonHeader, IonBackButton, IonContent } from "@ionic/react";
 import "./MoodQuiz.css";
 import { arrowForwardSharp } from "ionicons/icons";
 import {  useDispatch } from 'react-redux'
@@ -36,7 +36,7 @@ const MoodQuiz = ({ history }) => {
       <IonHeader>
         <IonBackButton defaultHref="/tabs/home"/>
       </IonHeader>
-      <div className="container">
+      <IonContent className="container">
         <h2 className="quiz-title">How are you physically feeling today?</h2>
         <p className="quiz-text">Select a feeling that best suit you</p>
         <div>
@@ -115,7 +115,7 @@ const MoodQuiz = ({ history }) => {
         <button className="skip-btn" onClick={undefined}>
           Skip
         </button>
-      </div>
+      </IonContent>
     </IonPage>
   );
 };

@@ -92,6 +92,63 @@ const AllActivities = [
     LetsBrainstorm,
 
 ]
+export const other = [
+    BePatient,
+    StartSmall,
+    UseYourFeelings,
+    ProblemSolving,
+    TakeAStepBack,
+    TimeToTakeAWalk,
+    LetsRelax,
+    LetsThink,
+    LetsBrainstorm,
+]
+
+export const goodBad =[
+    TakeAMinute,
+]
+export const goodGood=[
+    SupportNetwork,
+    PositiveTalk,
+    MeetingNewPeople,
+    ManageYourTime,
+    GetOutOfTheHouse,
+    HaveFun,
+]
+export const okBad=[
+    OvercomingFear,
+    RelocatingThoughts,
+    CopingStatements,
+    FacingFears,
+    SafetyBehaviours,
+    LetOthersIn,
+]
+export const okOk=[
+    ObjectControl,
+    TimeToBoogie,
+]
+export const okGood=[
+    GetMoving,
+    Reminisce,
+]
+
+export const badBad=[
+    PainFreeSensations,
+    TemperatureControl,
+    EntertainYourself,
+]
+export const badOk=[
+    PainFreeRoom,
+    GoodNightsSleep,
+    RealisticThinking,
+    LetsBreathe,
+    HaveAGoodCry,
+]
+export const badGood =[
+    ReduceStress,
+    WriteItDown,
+]
+
 
 
 export default AllActivities

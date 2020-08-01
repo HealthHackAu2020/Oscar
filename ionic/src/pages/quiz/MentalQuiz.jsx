@@ -8,6 +8,7 @@ import {
   IonLabel,
   IonButton,
   IonBackButton,
+  IonContent
 } from "@ionic/react";
 import { arrowForwardSharp } from "ionicons/icons";
 import {  useDispatch } from 'react-redux'
@@ -48,7 +49,7 @@ const MentalQuiz = ({ history }) => {
         <IonBackButton defaultHref="/quiz/MoodQuiz"/>
       </IonHeader>
 
-      <div className="container">
+      <IonContent className="container">
         <h2 className="quiz-title">How are you mentally feeling today?</h2>
         <p className="quiz-text">Use the sliders to answer the below moods</p>
           <IonList>
@@ -84,7 +85,7 @@ const MentalQuiz = ({ history }) => {
               <ion-icon icon={arrowForwardSharp}></ion-icon>
             </IonButton>
           </div>
-        </div>
+        </IonContent>
     </IonPage>
   );
 };
