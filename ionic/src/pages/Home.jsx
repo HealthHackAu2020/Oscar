@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }from "react";
 import {
   IonImg,
   IonContent,
@@ -13,20 +13,34 @@ import "./Home.css";
 const HomeTab = ({ history }) => {
 
   const date = new Date();
-  const hour = date.getHours()
 
-  // TODO: get from context
-  const name = "Lauren"
-  
+  const nth = function(d) {
+    if (d > 3 && d < 21) return 'th';
+    switch (d % 10) {
+      case 1:  return "st";
+      case 2:  return "nd";
+      case 3:  return "rd";
+      default: return "th";
+    }
+  }
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  const [firstName] = useState('Lauren')
+
   return (
     <IonPage>
       <IonHeader></IonHeader>
       <IonContent>
         <IonHeader collapse="condense"></IonHeader>
         <div>
-          <div className="home-page-date">18th January 2020</div>
-          <div className="home-page-hi">Good {hour < 12 ? `Morning` : `Afternoon`}</div>
-          <div className="home-page-hi">{name}</div>
+  <div className="home-page-date">{dayNames[date.getDay()]}, {date.getDate()}{nth(date.getDate())} of {monthNames[date.getMonth()]} {date.getFullYear()}</div>
+          <div className="home-page-hi">Good {date.getHours() < 12 ? `Morning` : `Afternoon`}</div>
+          <div className="home-page-hi">{firstName}</div>
           <div className="home-page-welcome-msg">
             Glad to hear you're feeling a bit better today.
           </div>
