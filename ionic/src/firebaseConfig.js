@@ -72,14 +72,13 @@ export function signOut() {
 }
 
 export async function loginUser(username, password) {
-  try {
-    const res = await firebase
-      .auth()
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then((_) => firebase.auth()
       .signInWithEmailAndPassword(username, password)
-    return res
-  } catch (error) {
-    console.log(error)
-  }
+    )
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 export async function registerUser(username, password) {
