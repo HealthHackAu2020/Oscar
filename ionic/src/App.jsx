@@ -21,7 +21,6 @@ import {
   personOutline,
   calendarOutline,
   homeOutline,
-  logOutOutline,
 } from 'ionicons/icons'
 import Home from './pages/Home'
 import AllActivities from './pages/activities/AllActivities'
@@ -97,10 +96,6 @@ function Tabs() {
           <IonTabButton tab='profile' href='/tabs/Profile'>
             <IonIcon icon={personOutline} />
             <IonLabel>Profile</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab='Logout' href='/tabs/Logout'>
-            <IonIcon icon={logOutOutline} />
-            <IonLabel>Logout</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

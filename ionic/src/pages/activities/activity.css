@@ -46,3 +46,19 @@
     margin-top: 2em;
     text-align: justify;
 }
+
+.activity-list-item {
+    background-color: white;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+.activity-list-item div.streak {
+    text-align: center;
+    font-weight: bold;
+    font-size:xx-large
+}
+
+.activity-list-item div.subtitle {
+    margin-top: 0.2em;
+}

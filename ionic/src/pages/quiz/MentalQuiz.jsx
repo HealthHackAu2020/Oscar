@@ -91,6 +91,14 @@ const MentalQuiz = ({ history }) => {
             <ion-icon icon={arrowForwardSharp}></ion-icon>
           </IonButton>
         </div>
+        <button
+          className="skip-btn"
+          onClick={(e) => {
+            onClick(e, "/tabs/home");
+          }}
+        >
+          Skip
+        </button>
       </IonContent>
     </IonPage>
   );

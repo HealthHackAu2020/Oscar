@@ -13,19 +13,6 @@
   font-family: Avenir;
 }
 
-.activity-list-item {
-  background-color: white;
-  border-radius: 1em;
-  margin: 1em;
-}
-
-.activity-list-item div.title {
-  font-weight: bold;
-}
-.activity-list-item div {
-  margin-top: 0.5em;
-}
-
 .home-page-quote-of-the-day {
   margin: 1em;
 }
@@ -63,4 +50,8 @@
   border-radius: 10px;
   box-shadow: none;
   margin-bottom: 10px;
+}
+
+.activity {
+  cursor: pointer;
 }
