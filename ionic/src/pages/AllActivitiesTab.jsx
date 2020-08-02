@@ -39,7 +39,6 @@ const AllActivitiesTab = () => {
             mindfulness will help you take control of your moods.
           </div>
           <br />
-          <br />
 
           <h3>Suggested for you</h3>
           {
@@ -61,8 +60,9 @@ const AllActivitiesTab = () => {
                 <SomeActivity key={SomeActivity.activityId} listMode />
               ))
           }
-
-          <br />
+          {favouriteActivities.length > 0 &&
+            <br />
+          }
 
           {otherActivities.length > 0 && <h3>Other activities</h3>
           }

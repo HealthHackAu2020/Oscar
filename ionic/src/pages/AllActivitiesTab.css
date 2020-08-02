@@ -3,6 +3,11 @@
     margin: 1em;
 }
 
+.all-activities-tab h3 {
+    font-size: x-large;
+    font-weight: 600;
+}
+
 .activities-tab-message {
     text-align: justify;
 }
