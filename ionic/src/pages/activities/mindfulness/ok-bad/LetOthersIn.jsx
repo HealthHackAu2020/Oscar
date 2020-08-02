@@ -8,7 +8,7 @@ const activityId = "LetOthersIn"
 export default function ThisActivity(props) {
   return (
     <Activity
-      title="Let Others In"
+      title="Let others in"
       listSubtitle=""
 
       duration=""

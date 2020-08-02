@@ -8,7 +8,7 @@ const activityId = "ReduceStress"
 export default function ThisActivity(props) {
   return (
     <Activity
-      title="ReduceStress"
+      title="Reduce stress"
       listSubtitle=""
 
       duration=""

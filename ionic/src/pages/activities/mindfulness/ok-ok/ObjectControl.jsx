@@ -8,7 +8,7 @@ const activityId = "ObjectControl"
 export default function ThisActivity(props) {
   return (
     <Activity
-      title="ObjectControl"
+      title="Object control"
       listSubtitle=""
 
       duration=""
