@@ -1,5 +1,5 @@
 .range-bar {
-  --knob-size: 40px;
+  --knob-size: 50px;
   --knob-background: white;
   --bar-height: 32px;
   --bar-border-radius: 10px;
@@ -12,7 +12,6 @@
     #808aa8 100%
   );
   --bar-background-active: rgba(255, 255, 255, 0);
-  margin-top: 20px;
 
 }
 
@@ -20,9 +19,6 @@
 
 .bar-container{
   margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: -25px;
-  margin-right: -25px;
 }
 
 .quiz-text {
