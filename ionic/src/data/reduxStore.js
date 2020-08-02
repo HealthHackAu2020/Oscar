@@ -1,16 +1,16 @@
 import { createStore, applyMiddleware, compose } from "redux";
 
-import * as Effects from 'redux-saga/effects'
-import createSagaMiddleware from 'redux-saga'
+import * as Effects from "redux-saga/effects";
+import createSagaMiddleware from "redux-saga";
 
-import { Plugins } from '@capacitor/core';
+import { Plugins } from "@capacitor/core";
 
 const initialReduxState = {
   suggestedActivityIds: ["TimeToTakeAWalk"],
   favouriteActivities: {},
   completedActivities: {},
-  mentalMood:'',
-  physicalMood:''
+  mentalMood: {},
+  physicalMood: {},
 };
 
 function rootReducer(state = initialReduxState, action) {
@@ -44,10 +44,19 @@ function rootReducer(state = initialReduxState, action) {
       return { ...state, completedActivities: newDict };
 
     case "add-mental-mood":
-        return {...state, mentalMood: action.mentalMood}
+      return {
+        ...state,
+        mentalMood: { ...state.mentalMood, [action.date]: action.mentalMood },
+      };
 
     case "add-physical-mood":
-        return {...state, physicalMood: action.physicalMood}
+      return {
+        ...state,
+        physicalMood: {
+          ...state.physicalMood,
+          [action.date]: action.physicalMood,
+        },
+      };
 
     default:
       if (!action.type || !action.type.startsWith("@@")) {
@@ -58,46 +67,42 @@ function rootReducer(state = initialReduxState, action) {
   return state;
 }
 
-
-
-
 export default function createStoreWithInitialState(initialState) {
+  const sagaMiddleware = createSagaMiddleware();
 
-  const sagaMiddleware = createSagaMiddleware()
-
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const enhancer = composeEnhancers(
-    applyMiddleware(sagaMiddleware),
+    applyMiddleware(sagaMiddleware)
     // other store enhancers if any
-  )
+  );
   const store = createStore(
     rootReducer,
     { ...initialReduxState, ...initialState },
-    enhancer,
-  )
-  sagaMiddleware.run(rootSaga)
-  return store
+    enhancer
+  );
+  sagaMiddleware.run(rootSaga);
+  return store;
 }
 
 function* rootSaga() {
-  yield Effects.fork(saveToCapacitorSaga)
+  yield Effects.fork(saveToCapacitorSaga);
 }
 
 function* saveToCapacitorSaga() {
-
   // after every action saves the redux state to capacitor
 
   while (true) {
     // wait for any action
-    yield Effects.take()
+    yield Effects.take();
 
     // get the store state
-    const state = yield Effects.select()
+    const state = yield Effects.select();
 
     // save to capacitor storage plugin
-    yield Effects.call(
-      [Plugins.Storage, Plugins.Storage.set],
-      { key: "oscar-redux", value: JSON.stringify(state) }
-    )
+    yield Effects.call([Plugins.Storage, Plugins.Storage.set], {
+      key: "oscar-redux",
+      value: JSON.stringify(state),
+    });
   }
 }

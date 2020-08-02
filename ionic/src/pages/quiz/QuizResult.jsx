@@ -12,6 +12,7 @@ import {
 } from "@ionic/react";
 import generateRec from "./recGenerator";
 import "./QuizResult.css";
+import moment from "moment";
 
 const QuizResult = () => {
   const completedActivitiesMap = useSelector(
@@ -19,11 +20,12 @@ const QuizResult = () => {
   );
   const physicalMood = useSelector((state) => state.physicalMood);
   const mentalMood = useSelector((state) => state.mentalMood);
+  const today = moment().format("DD-MM-YYYY");
 
   const completedActivities = Object.keys(completedActivitiesMap);
 
   const SuggestedActivity = generateRec(
-    { physicalMood, mentalMood },
+    { physicalMood: physicalMood[today], mentalMood: mentalMood[today] },
     completedActivities
   );
 
@@ -40,12 +42,14 @@ const QuizResult = () => {
           </div>
           <br />
 
-          <IonCard color="light" className='card'>
+          <IonCard color="light" className="card">
             <IonCardHeader>
               <IonCardSubtitle className="sub-title mindfulness-title">
                 Mindfulness activity
               </IonCardSubtitle>
-              <IonCardTitle>Try take some time for you today</IonCardTitle>
+              <IonCardTitle className="title">
+                Try take some time for you today
+              </IonCardTitle>
             </IonCardHeader>
 
             <IonCardContent>
@@ -73,14 +77,14 @@ const QuizResult = () => {
 function QuoteOfTheDay(props) {
   const { text, author } = props;
   return (
-    <IonCard color="light" className='card'>
+    <IonCard color="light" className="card">
       <IonCardHeader>
         <IonCardSubtitle className="sub-title quote-title">
-        Quote of the day
+          Quote of the day
         </IonCardSubtitle>
-        <IonCardTitle>{text}</IonCardTitle>
       </IonCardHeader>
 
+      <IonCardContent>"{text}"</IonCardContent>
       <IonCardContent>— {author}</IonCardContent>
     </IonCard>
   );

@@ -8,10 +8,11 @@ import {
   IonLabel,
   IonButton,
   IonBackButton,
-  IonContent
+  IonContent,
 } from "@ionic/react";
 import { arrowForwardSharp } from "ionicons/icons";
-import {  useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
+import moment from "moment";
 
 import "./MentalQuiz.css";
 
@@ -24,19 +25,24 @@ const MentalQuiz = ({ history }) => {
   function onClick(e, page) {
     e.preventDefault();
     const total = stressed + frustrated + worried;
-    const mentalMood = convertMentalMoodToString(total)
-    dispatch({type: 'add-mental-mood', mentalMood})
+    const mentalMood = convertMentalMoodToString(total);
+    const today = moment().format("DD-MM-YYYY");
+    dispatch({
+      type: "add-mental-mood",
+      mentalMood,
+      date: today,
+    });
     history.push(page);
   }
 
-  function convertMentalMoodToString(mentalMood){
-    if(mentalMood <= 10){
-      return 'good'
+  function convertMentalMoodToString(mentalMood) {
+    if (mentalMood <= 10) {
+      return "good";
     }
-    if(mentalMood <= 10){
-      return 'ok'
+    if (mentalMood <= 10) {
+      return "ok";
     }
-    return 'bad'
+    return "bad";
   }
 
   function handler(condition, value) {
@@ -46,46 +52,46 @@ const MentalQuiz = ({ history }) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonBackButton defaultHref="/quiz/MoodQuiz"/>
+        <IonBackButton defaultHref="/quiz/MoodQuiz" />
       </IonHeader>
 
       <IonContent className="container">
         <h2 className="quiz-title">How are you mentally feeling today?</h2>
         <p className="quiz-text">Use the sliders to answer the below moods</p>
-          <IonList>
-            <RangeBar
-              handler={handler}
-              value={stressed}
-              setState={setStressed}
-              parameter="Stressed"
-            ></RangeBar>
-            <RangeBar
-              handler={handler}
-              value={frustrated}
-              setState={setFrustrated}
-              parameter="Frustrated"
-            ></RangeBar>
-            <RangeBar
-              handler={handler}
-              value={worried}
-              setState={setWorried}
-              parameter="Worried"
-            ></RangeBar>
-          </IonList>
-          <div>
-            <IonButton
-              className="next-btn"
-              color="light"
-              shape="round"
-              onClick={(e) => {
-                onClick(e, "/tabs/QuizResult");
-              }}
-            >
-              Next
-              <ion-icon icon={arrowForwardSharp}></ion-icon>
-            </IonButton>
-          </div>
-        </IonContent>
+        <IonList>
+          <RangeBar
+            handler={handler}
+            value={stressed}
+            setState={setStressed}
+            parameter="Stressed"
+          ></RangeBar>
+          <RangeBar
+            handler={handler}
+            value={frustrated}
+            setState={setFrustrated}
+            parameter="Frustrated"
+          ></RangeBar>
+          <RangeBar
+            handler={handler}
+            value={worried}
+            setState={setWorried}
+            parameter="Worried"
+          ></RangeBar>
+        </IonList>
+        <div>
+          <IonButton
+            className="next-btn"
+            color="light"
+            shape="round"
+            onClick={(e) => {
+              onClick(e, "/tabs/QuizResult");
+            }}
+          >
+            Next
+            <ion-icon icon={arrowForwardSharp}></ion-icon>
+          </IonButton>
+        </div>
+      </IonContent>
     </IonPage>
   );
 };
@@ -93,8 +99,8 @@ const MentalQuiz = ({ history }) => {
 function RangeBar(props) {
   const { parameter, handler, value, setState } = props;
   return (
-    <div className='bar-container'>
-      <IonLabel className='range-bar-label'>{parameter}</IonLabel>
+    <div className="bar-container">
+      <IonLabel className="range-bar-label">{parameter}</IonLabel>
       <IonItem lines="none">
         <IonRange
           className="range-bar"

@@ -12,8 +12,11 @@ import {
 
 // mood: object, completedActivities: array of activityIds
 function generateRec(mood, completedActivities) {
-  let resultArr;
   const { physicalMood, mentalMood } = mood;
+  if(!physicalMood || !mentalMood) return other[0];
+
+  
+  let resultArr;
   if (mentalMood === "good" && physicalMood === "good") {
     resultArr = filterCompleted(goodGood, completedActivities)
   }

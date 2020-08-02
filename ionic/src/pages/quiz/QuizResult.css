@@ -38,8 +38,7 @@
 }
 
 .sub-title {
-  /* height: 17px;
-  width: 130px; */
+  text-transform: capitalize;
   color: #4a4a4a;
   font-family: Avenir;
   font-size: 14px;
@@ -47,9 +46,21 @@
   letter-spacing: 0.35px;
   line-height: 17px;
   text-align: left;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: #000000;
+  font-family: Avenir;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 22px;
 }
 
 .card {
   border-radius: 10px;
   box-shadow: none;
+  margin-bottom: 10px;
 }

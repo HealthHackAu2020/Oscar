@@ -1,40 +1,50 @@
 import React, { useState } from "react";
-import { IonButton, IonPage, IonHeader, IonBackButton, IonContent } from "@ionic/react";
+import {
+  IonButton,
+  IonPage,
+  IonHeader,
+  IonBackButton,
+  IonContent,
+} from "@ionic/react";
 import "./MoodQuiz.css";
 import { arrowForwardSharp } from "ionicons/icons";
-import {  useDispatch } from 'react-redux'
-
+import { useDispatch } from "react-redux";
+import moment from "moment";
 
 const MoodQuiz = ({ history }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [activated, setActivated] = useState("");
 
   function onClick(e, page) {
-    if (!activated) return;
     e.preventDefault();
     history.push(page);
   }
-  
-  function btnSelect(physicalMood){
+
+  function btnSelect(physicalMood) {
     setActivated(physicalMood);
-    const simplifiedMood = simplifyPhysicalMood(physicalMood)
-    dispatch({type: 'add-physical-mood', physicalMood:simplifiedMood});
+    const simplifiedMood = simplifyPhysicalMood(physicalMood);
+    const today = moment().format("DD-MM-YYYY");
+    dispatch({
+      type: "add-physical-mood",
+      physicalMood: simplifiedMood,
+      date : today
+    });
   }
 
-  function simplifyPhysicalMood(physicalMood){
-    if(physicalMood=== 'great' || physicalMood=== 'good' ){
-      return 'good'
+  function simplifyPhysicalMood(physicalMood) {
+    if (physicalMood === "great" || physicalMood === "good") {
+      return "good";
     }
-    if (physicalMood === 'meh'){
-      return 'ok'
+    if (physicalMood === "meh") {
+      return "ok";
     }
-    return 'bad'
+    return "bad";
   }
-  
+
   return (
     <IonPage>
       <IonHeader>
-        <IonBackButton defaultHref="/tabs/home"/>
+        <IonBackButton defaultHref="/tabs/home" />
       </IonHeader>
       <IonContent className="container">
         <h2 className="quiz-title">How are you physically feeling today?</h2>
@@ -42,9 +52,9 @@ const MoodQuiz = ({ history }) => {
         <div>
           <div>
             <IonButton
-              className={activated==='great' ?  'active-mood-btn': 'mood-btn'}
+              className={activated === "great" ? "active-mood-btn" : "mood-btn"}
               shape="round"
-              id={activated==='great' ?  'active-great': 'great'}
+              id={activated === "great" ? "active-great" : "great"}
               onClick={(e) => {
                 btnSelect(e.target.id);
               }}
@@ -54,9 +64,9 @@ const MoodQuiz = ({ history }) => {
           </div>
           <div>
             <IonButton
-              className={activated==='good' ?  'active-mood-btn': 'mood-btn'}
+              className={activated === "good" ? "active-mood-btn" : "mood-btn"}
               shape="round"
-              id={activated==='good' ?  'active-good': 'good'}
+              id={activated === "good" ? "active-good" : "good"}
               onClick={(e) => {
                 btnSelect(e.target.id);
               }}
@@ -66,9 +76,9 @@ const MoodQuiz = ({ history }) => {
           </div>
           <div>
             <IonButton
-              className={activated==='meh' ?  'active-mood-btn': 'mood-btn'}
+              className={activated === "meh" ? "active-mood-btn" : "mood-btn"}
               shape="round"
-              id={activated==='meh' ?  'active-meh': 'meh'}
+              id={activated === "meh" ? "active-meh" : "meh"}
               onClick={(e) => {
                 btnSelect(e.target.id);
               }}
@@ -78,9 +88,9 @@ const MoodQuiz = ({ history }) => {
           </div>
           <div>
             <IonButton
-              className={activated==='poor' ?  'active-mood-btn': 'mood-btn'}
+              className={activated === "poor" ? "active-mood-btn" : "mood-btn"}
               shape="round"
-              id={activated==='poor' ?  'active-poor': 'poor'}
+              id={activated === "poor" ? "active-poor" : "poor"}
               onClick={(e) => {
                 btnSelect(e.target.id);
               }}
@@ -90,9 +100,9 @@ const MoodQuiz = ({ history }) => {
           </div>
           <div>
             <IonButton
-              className={activated==='rough' ?  'active-mood-btn': 'mood-btn'}
+              className={activated === "rough" ? "active-mood-btn" : "mood-btn"}
               shape="round"
-              id={activated==='rough' ?  'active-rough': 'rough'}
+              id={activated === "rough" ? "active-rough" : "rough"}
               onClick={(e) => {
                 btnSelect(e.target.id);
               }}
@@ -105,6 +115,7 @@ const MoodQuiz = ({ history }) => {
             color="light"
             shape="round"
             onClick={(e) => {
+              if (!activated) return;
               onClick(e, "/quiz/MentalQuiz");
             }}
           >
@@ -112,9 +123,14 @@ const MoodQuiz = ({ history }) => {
             <ion-icon icon={arrowForwardSharp}></ion-icon>
           </IonButton>
         </div>
-        {/* <button className="skip-btn" onClick={undefined}>
+        <button
+          className="skip-btn"
+          onClick={(e) => {
+            onClick(e, "/tabs/home");
+          }}
+        >
           Skip
-        </button> */}
+        </button>
       </IonContent>
     </IonPage>
   );

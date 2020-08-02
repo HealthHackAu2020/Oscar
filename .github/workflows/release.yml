@@ -1,28 +1,35 @@
 on:
   push:
-    branches:
-      - refs/tags/*
+    tags:
+      - "*"
 
 name: Create Release
 
 jobs:
   build:
-    name: Create Release
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      - uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
-          draft: false
-          prerelease: false
+          persist-credentials: false
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        working-directory: ./ionic
+        run: |
+          npm i
+          npm run build
+        env:
+          CI: false
+      - name: Deploy 🚀
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          PROJECT_ID: oscar-9b427
+          PROJECT_PATH: ionic
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
