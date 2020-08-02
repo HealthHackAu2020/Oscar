@@ -47,3 +47,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+# Credits
+
+The Oscar app would not be possible without these free & open-source projects:
+
+* Ionic Framework
+* React
+* React Redux
+* React Redux Saga
+* VS Code
+
+Also thanks to:
+
+* www.tameyourgut.com - Psychological Therapy Program for People Living with Inflammatory Bowel Disease
+* Anxiety Canada
+* Firebase
