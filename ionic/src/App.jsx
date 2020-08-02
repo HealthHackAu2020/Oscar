@@ -21,7 +21,6 @@ import {
   personOutline,
   calendarOutline,
   homeOutline,
-  logOutOutline,
 } from 'ionicons/icons'
 import Home from './pages/Home'
 import AllActivities from './pages/activities/AllActivities'

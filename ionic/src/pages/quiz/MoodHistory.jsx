@@ -10,8 +10,6 @@ import Calendar from 'react-calendar'
 
 import 'react-calendar/dist/Calendar.css';
 import './MoodHistory.css';
-import { atCircle } from "ionicons/icons";
-
 
 export function MoodHistoryPage(props) {
   const { history } = props;
@@ -37,6 +35,7 @@ export function MoodHistoryPage(props) {
       case 29: return "mood-history-day-better";
       case 28: return "mood-history-day-neutral";
       case 27: return "mood-history-day-neutral";
+      default: break;
     }
 
     const score = Math.random() * 10
