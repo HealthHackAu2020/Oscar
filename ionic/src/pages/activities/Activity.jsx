@@ -35,6 +35,7 @@ function ActivityBase(props) {
   const isFavourite = useSelector(state => !!state.favouriteActivities[activityId])
   const isComplete = useSelector(state => !!state.completedActivities[activityId])
   const dispatch = useDispatch()
+  const history = useHistory()
 
   function onFavouriteIconClicked() {
     if (isFavourite) {
@@ -49,6 +50,7 @@ function ActivityBase(props) {
       dispatch({ type: 'activity-not-complete', activityId })
     } else {
       dispatch({ type: 'activity-complete', activityId, date: new Date() })
+      history.push("/tabs/ActivityDone")
     }
   }
 

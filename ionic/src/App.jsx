@@ -65,6 +65,7 @@ import { AppContext } from './context'
 
 import { isLoggedIn } from './firebaseConfig'
 import { MoodHistoryPage } from './pages/quiz/MoodHistory'
+import { ActivityDone } from './pages/activities/ActivityDone'
 
 function Tabs() {
   return (
@@ -77,6 +78,8 @@ function Tabs() {
             component={AllActivitiesTab}
             exact={true}
           />
+          <Route path='/tabs/ActivityDone' component={ActivityDone} />
+          
           <Route path='/tabs/Logout' component={Logout} />
           <Route path='/tabs/Support' component={Support} />
           <Route path='/tabs/Profile' component={Profile} />
