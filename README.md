@@ -6,7 +6,7 @@ The mobile application was developed from scratch over two weekends for [HealthH
 
 # Technology
 
-The application was primarily developed using Ionic React and is available as an Android and IOS application. Redux is used for state management and Firebase is used for the backed and user authentication.
+The application was primarily developed using Ionic React and is available as an Android and IOS application. Redux is used for state management and Firebase is used for the backed and user authentication. A chatbot prototype was also developed on IBM Watson Assistant.
 
 # Accessing Oscar
 
