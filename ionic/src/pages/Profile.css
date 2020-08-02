@@ -85,18 +85,20 @@
     font-weight: 100;
 }
 
-.activity-list-item {
+.profile-list-item {
     background-color: white;
     border-radius: 1em;
     margin: 1em;
 }
 
-.activity-list-item div.streak {
+.profile-list-item div.streak {
     text-align: center;
     font-weight: bold;
     font-size:xx-large
 }
 
-.activity-list-item div.subtitle {
-    margin-top: 1.5em;
+.profile-list-item div.subtitle-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
