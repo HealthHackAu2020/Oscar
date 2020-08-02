@@ -25,3 +25,9 @@ Although the application has been developed for mobile, it can be accessed on a 
 # Links
 
 https://www.instagram.com/mindgutguru/
+
+# Licence
+
+Code: Apache 2.0
+For graphics (created from scratch by @lewismo): https://creativecommons.org/licenses/by/4.0/
+Text currently used with permission from www.tameyourgut.com and Anxiety Canada
