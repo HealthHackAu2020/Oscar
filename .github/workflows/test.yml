@@ -1,4 +1,4 @@
-name: firebase-build
+name: firebase-build-test
 
 on:
   push:
