@@ -98,10 +98,6 @@ function Tabs() {
             <IonIcon icon={personOutline} />
             <IonLabel>Profile</IonLabel>
           </IonTabButton>
-          <IonTabButton tab='Logout' href='/tabs/Logout'>
-            <IonIcon icon={logOutOutline} />
-            <IonLabel>Logout</IonLabel>
-          </IonTabButton>
         </IonTabBar>
       </IonTabs>
     )
