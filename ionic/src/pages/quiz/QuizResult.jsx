@@ -9,29 +9,40 @@ import {
   IonCardTitle,
   IonCardHeader,
   IonCardContent,
+  IonBackButton,
 } from "@ionic/react";
-import generateRec from "./recGenerator";
-import "./QuizResult.css";
 import moment from "moment";
+import generateRec from "./recGenerator";
+import quoteList from "../../data/quote.json";
+import "./QuizResult.css";
+
+export const quotePicker = (array) => {
+  const randomInt = Math.floor(Math.random() * array.length);
+  return array[randomInt];
+};
 
 const QuizResult = () => {
   const completedActivitiesMap = useSelector(
     (state) => state.completedActivities
   );
-  const physicalMood = useSelector((state) => state.physicalMood);
-  const mentalMood = useSelector((state) => state.mentalMood);
+  const physicalMoodMap = useSelector((state) => state.physicalMood);
+  const mentalMoodMap = useSelector((state) => state.mentalMood);
   const today = moment().format("DD-MM-YYYY");
 
   const completedActivities = Object.keys(completedActivitiesMap);
 
   const SuggestedActivity = generateRec(
-    { physicalMood: physicalMood[today], mentalMood: mentalMood[today] },
+    { physicalMood: physicalMoodMap[today], mentalMood: mentalMoodMap[today] },
     completedActivities
   );
 
+  const quoteOfTheDay = quotePicker(quoteList);
+
   return (
     <IonPage>
-      <IonHeader></IonHeader>
+      <IonHeader>
+        <IonBackButton defaultHref="/quiz/MentalQuiz" />
+      </IonHeader>
       <IonContent>
         <IonHeader collapse="condense"></IonHeader>
         <div className="all-activities-tab">
@@ -57,16 +68,18 @@ const QuizResult = () => {
               some time out. I think you should try the escape activity and try
               look after yourself today.
             </IonCardContent>
-            {SuggestedActivity && (
-              <SuggestedActivity key={SuggestedActivity} listMode />
-            )}
+            <div className="activity">
+              {SuggestedActivity && (
+                <SuggestedActivity key={SuggestedActivity} listMode />
+              )}
+            </div>
           </IonCard>
 
           <br />
 
           <QuoteOfTheDay
-            text="Whoever wants to reach a distant goal must take small steps"
-            author="Helmut Schmidt"
+            text={quoteOfTheDay.text}
+            author={quoteOfTheDay.author}
           />
         </div>
       </IonContent>
