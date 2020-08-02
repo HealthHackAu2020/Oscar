@@ -20,6 +20,14 @@
     
 }
 
+.activity-credit a {
+    color: #3a3a3a !important;
+}
+.activity-credit {
+    font-size: small;
+    color: #3a3a3a !important;
+}
+
 .activity-complete-checkbox ion-checkbox {
     font-size: large;
     --size: 2em;
