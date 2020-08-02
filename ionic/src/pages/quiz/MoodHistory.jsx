@@ -10,6 +10,7 @@ import Calendar from 'react-calendar'
 
 import 'react-calendar/dist/Calendar.css';
 import './MoodHistory.css';
+import { atCircle } from "ionicons/icons";
 
 
 export function MoodHistoryPage(props) {
@@ -22,8 +23,20 @@ export function MoodHistoryPage(props) {
       return
     }
 
-    if (date >= new Date()) {
+    const today = new Date()
+    if (date >= today) {
       return // in the future
+    }
+
+    // fixed data for the demo
+    switch (date.getDate()) {
+      case 2: return "mood-history-day-not-great";
+      case 1: return "mood-history-day-not-great";
+      case 31: return "mood-history-day-not-great";
+      case 30: return "mood-history-day-neutral";
+      case 29: return "mood-history-day-better";
+      case 28: return "mood-history-day-neutral";
+      case 27: return "mood-history-day-neutral";
     }
 
     const score = Math.random() * 10
