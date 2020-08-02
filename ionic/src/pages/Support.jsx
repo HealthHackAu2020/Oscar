@@ -10,7 +10,7 @@ import {
 } from "@ionic/react";
 import "./Support.css";
 
-const Support = ({ support }) => {
+const Support = ({ history }) => {
   return (
     <IonPage>
       <IonHeader></IonHeader>
@@ -29,12 +29,12 @@ const Support = ({ support }) => {
             description="I understand that sometimes life's ups and downs are tougher when living with IBD. However, I am not a substitute for healthcare. If you are in a dark place please don't hesitate in contacting the following support. You are not alone."
           />
           <IonRow>
-            <HomeTabBigButton image="ccA" history={support} page="/tabs/activities" />
-            <HomeTabBigButton image="bblogo" />
+            <HomeTabBigButton image="ccA" page="https://www.crohnsandcolitis.com.au/" />
+            <HomeTabBigButton image="bblogo" page="https://www.beyondblue.org.au/" />
           </IonRow>
           <IonRow>
-            <HomeTabBigButton image="lifeline" />
-            <HomeTabBigButton image="hub" />
+            <HomeTabBigButton image="lifeline" page="https://www.lifeline.org.au/" />
+            <HomeTabBigButton image="hub" page="https://www.ibdsupport.org.au/" />
           </IonRow>
         </IonGrid>
       </IonContent>
@@ -43,10 +43,10 @@ const Support = ({ support }) => {
 };
 
 function HomeTabBigButton(props) {
-  const { page, history, title, image } = props;
+  const { page, title, image } = props;
   function onClick(e) {
     e.preventDefault();
-    history.push(page)
+    window.open(page, '_blank')
   }
   return (
     <IonCol size="6" onClick={page ? onClick : undefined}>

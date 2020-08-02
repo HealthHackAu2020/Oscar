@@ -9,3 +9,13 @@
     left: 50%;
     transform: translate(-50%, -50%);    
 }
+
+ion-tab-bar {
+    --background: white;
+}
+
+ion-tab-button {
+    --color: darkgrey;
+    --color-selected: black;
+
+}

@@ -25,31 +25,33 @@ const Profile = ({ history }) => {
       <IonHeader></IonHeader>
       <IonContent>
         <IonHeader collapse="condense"></IonHeader>
-        <div>
-          <div className="profile-page-hi">Your Profile</div>
-          <div className="profile-page-welcome-msg">
-            Edit your information and view your level with Oscar.
+        <div className="profile-page-content">
+          <div>
+            <div className="profile-page-hi">Your Profile</div>
+            <div className="profile-page-welcome-msg">
+              Edit your information and view your level with Oscar.
+            </div>
           </div>
-        </div>
-        <IonGrid>
-          <ProfileInfo
-            text="Lauren"
-            description="You have had IBD for 4 years and signed up with Oscar in 2020. 23 years old studying BA and in your final fourth year at Sydney University"
-          />
-        </IonGrid>
-        <div>
-          <div className="profile-page-hi">Activities</div>
-          <IonGrid >
-            <ActivityListItem className="activity-list-item" listSubtitle="Oscar activities completed" streak="10" />
-            <ActivityListItem className="activity-list-item" listSubtitle="Day streak on the app" streak="07" />
+          <IonGrid>
+            <ProfileInfo
+              text="Lauren"
+              description="You have had IBD for 4 years and signed up with Oscar in 2020. 23 years old studying BA and in your final fourth year at Sydney University"
+            />
           </IonGrid>
-          <IonGrid className='container'><IonButton
-            className="next-btn"
-            color="light"
-            shape="round"
-            onClick={handleLogout}>
-            Logout
-            </IonButton></IonGrid>
+          <div>
+            <div className="profile-page-hi">Activities</div>
+            <IonGrid >
+              <ActivityListItem className="activity-list-item" listSubtitle="Oscar activities completed" streak="10" />
+              <ActivityListItem className="activity-list-item" listSubtitle="Day streak on the app" streak="07" />
+            </IonGrid>
+            <IonGrid className='container'><IonButton
+              className="next-btn"
+              color="light"
+              shape="round"
+              onClick={handleLogout}>
+              Logout
+              </IonButton></IonGrid>
+          </div>
         </div>
       </IonContent>
     </IonPage >
@@ -64,7 +66,7 @@ function ProfileInfo(props) {
         <div>{text}</div>
         <div>{description}</div>
         <div>Edit information</div>
-        <div><h6>Interest</h6></div>
+        <div><h6>Interests</h6></div>
         <IonGrid>
           <IonRow >
             <IonCol className="profile-pill-one">Fashion</IonCol>
