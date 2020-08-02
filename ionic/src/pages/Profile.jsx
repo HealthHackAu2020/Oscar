@@ -41,8 +41,8 @@ const Profile = ({ history }) => {
           <div>
             <div className="profile-page-hi">Activities</div>
             <IonGrid >
-              <ActivityListItem className="activity-list-item" listSubtitle="Oscar activities completed" streak="10" />
-              <ActivityListItem className="activity-list-item" listSubtitle="Day streak on the app" streak="07" />
+              <ActivityListItem className="profile-list-item" listSubtitle="Oscar activities completed" streak="10" />
+              <ActivityListItem className="profile-list-item" listSubtitle="Day streak on the app" streak="07" />
             </IonGrid>
             <IonGrid className='container'><IonButton
               className="next-btn"
@@ -86,14 +86,16 @@ function ActivityListItem(props) {
   const { listSubtitle, streak } = props
 
   return (
-    <div className="activity-list-item">
+    <div className="profile-list-item">
       <IonGrid>
         <IonRow >
           <IonCol size="3">
             <div className="streak">{streak}</div>
           </IonCol>
           <IonCol size="9">
-            <div className="subtitle">{listSubtitle}</div>
+            <div className="subtitle-container">
+              <div className="subtitle">{listSubtitle}</div>
+            </div>
           </IonCol>
         </IonRow>
       </IonGrid>
