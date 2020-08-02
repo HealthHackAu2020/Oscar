@@ -1,7 +1,9 @@
 on:
   push:
-    tags:
+    branches:
       - "*"
+    tags:
+      - "v*"
 
 name: Create Release
 
